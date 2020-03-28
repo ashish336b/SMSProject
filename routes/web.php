@@ -23,11 +23,17 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('admin')->group(function () {
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
-    Route::get('/', 'AdminController@index')->name('admin.dashboard'); //admin dashboard
+    Route::get('/', 'AdminController@index')->name('admin.dashboard');
 });
+
+Route::prefix('admin/students')->group(function () {
+    Route::get("/", 'Admin\StudentController@index')->name('admin.students')->middleware('auth:admin');
+});
+
 Route::prefix('students')->group(function () {
     Route::get('/login', 'Auth\StudentsLoginController@showLoginForm')->name('students.login');
     Route::post('/login', 'Auth\StudentsLoginController@login')->name('students.login.submit');
-    Route::get('/', 'StudentsController@index')->name('students.dashboard'); //student dashboard
+    Route::get('/', 'StudentsController@index')->name('students.dashboard');
 });
+Route::get('/test', 'TestController@index')->name('test');
 
