@@ -11,11 +11,7 @@ class StudentsController extends Controller
         $this->middleware('auth:students');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+
     public function index()
     {
         return view('students');
