@@ -30,4 +30,5 @@ Route::prefix('students')->group(function () {
     Route::post('/login', 'Auth\StudentsLoginController@login')->name('students.login.submit');
     Route::get('/', 'StudentsController@index')->name('students.dashboard'); //student dashboard
 });
+Route::get('/test','TestController@index')->name('test');
 
