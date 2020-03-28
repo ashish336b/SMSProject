@@ -5,7 +5,7 @@
                 <div class="col-lg-8 p-r-0 title-margin-right">
                     <div class="page-header">
                         <div class="page-title">
-                            <h1>Hello, <span>Welcome Here</span></h1>
+                            <h1>Hello, <span>{{Auth::user()->name}}</span></h1>
                         </div>
                     </div>
                 </div>
@@ -20,10 +20,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- /# column -->
             </div>
-            <!-- /# row -->
-            <h1>Content</h1>
+            <section id="main-content">
+                @yield('adminContent')
+            </section>
         </div>
     </div>
 </div>
