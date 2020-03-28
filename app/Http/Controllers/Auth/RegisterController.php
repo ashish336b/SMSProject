@@ -43,30 +43,40 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'rollNumber' => ['required', 'string', 'max:255', 'unique:teachers'],
+            'firstName' => ['required', 'string', 'max:255'],
+            'lastName' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:teachers'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'address' => ['required', 'string'],
+            'phoneNumber' => ['required', 'numeric'],
+            'department' => ['required', 'numeric'],
         ]);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \App\Teachers
      */
     protected function create(array $data)
     {
         return Teachers::create([
-            'name' => $data['name'],
+            'rollNumber'=> $data['rollNumber'],
+            'firstName' => $data['firstName'],
+            'lastName' => $data['lastName'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'address' => $data['address'],
+            'phoneNumber' => $data['phoneNumber'],
+            'department_id' => $data['department'],
         ]);
     }
 }

@@ -12,10 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return redirect(route("login")); //this redirect to login page of teacher
+})->name('welcome');
 
 Auth::routes();
+
+//Route::get('/register','Auth\RegisterController@register')->name('register')->middleware('auth:admin');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('admin')->group(function () {
