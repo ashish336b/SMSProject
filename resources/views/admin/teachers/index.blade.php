@@ -25,14 +25,20 @@
                         <td>{{$teacher->email}}</td>
                         <td>{{$teacher->address}}</td>
                         <td>{{$teacher->phoneNumber}}</td>
-                        <td>{{$teacher->department}}</td>
+                        @if($teacher->department_id == 1)
+                            <td>Chemistry</td>
+                        @else
+                            <td>Physics</td>
+                        @endif
                         <td>
                             <a href="{{route('admin.teachers.show',['id'=>$teacher->id])}}"
                                class="btn btn-primary btn-sm">Edit</a>
                             <form action="{{route('admin.teachers.delete',['id'=>$teacher->id])}}" method="post">
                                 @csrf
                                 <input name="_method" type="hidden" value="DELETE">
-                                <button onclick=" return deleteConfirm()" type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                <button onclick=" return deleteConfirm()" type="submit" class="btn btn-danger btn-sm">
+                                    Delete
+                                </button>
                             </form>
                         </td>
                     </tr>
