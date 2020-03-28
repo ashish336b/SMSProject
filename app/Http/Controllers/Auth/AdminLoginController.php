@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\MessageBag;
 
 class AdminLoginController extends Controller
 {
@@ -21,7 +23,7 @@ class AdminLoginController extends Controller
     public function login(Request $request)
     {
         //validate the form data
-        $this->validate($request, [
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:6'
         ]);
@@ -31,6 +33,7 @@ class AdminLoginController extends Controller
         ], $request->remember)) {
             return redirect()->intended(route('admin.dashboard'));
         }
-        return redirect()->back()->with($request->only('email', 'remember'));
+        $errors = new MessageBag(['email'=>[trans('auth.failed')]]);
+        return redirect()->back()->withErrors($errors)->withInput(Input::except('password'));
     }
 }
