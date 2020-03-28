@@ -1,7 +1,7 @@
 <div class="content-wrap">
     <div class="main">
         <div class="container-fluid">
-            <div class="row">
+            {{--<div class="row">
                 <div class="col-lg-8 p-r-0 title-margin-right">
                     <div class="page-header">
                         <div class="page-title">
@@ -20,7 +20,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--}}
             <section id="main-content">
                 @yield('adminContent')
             </section>
