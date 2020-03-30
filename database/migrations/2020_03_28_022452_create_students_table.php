@@ -23,7 +23,7 @@ class CreateStudentsTable extends Migration
             $table->string('phoneNumber');
             $table->string('address');
             $table->enum('gender', ['male', 'female']);
-            $table->integer('class_id'); //foreign to class
+            $table->integer('classroom_id'); //foreign to class
             $table->rememberToken();
             $table->timestamps();
         });
