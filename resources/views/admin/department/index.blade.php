@@ -2,20 +2,16 @@
 @section('adminContent')
 <div class="container">
     <div class="p-2">
-        <div class="text-right pb-2"><a href="{{ route("admin.teachers.add") }}"
+        <div class="text-right pb-2 "><a href="{{ route("admin.department.add") }}"
                 class="btn btn-info btn-sm">ADD <span class="iconify" data-icon="bx:bxs-message-add"
-                    data-inline="false"></span></a></div>
+                    data-inline="false"></span> </a></div>
                     @include('layouts.flashmessage')
-        <table id="teacherTable" class="table table-striped table-responsive">
+        <table id="departmentTable" class="table table-striped table-responsive">
             <thead>
                 <tr>
                     <th scope="col">SN</th>
-                    <th scope="col">RollNumber</th>
+                    <th scope="col">DepartmentCode</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">address</th>
-                    <th scope="col">Phone Number</th>
-                    <th scope="col">Department</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -23,25 +19,17 @@
                 @php
                     $counter = 1;
                 @endphp
-                @foreach($teacherData as $teacher)
+                @foreach($departmentData as $data)
                     <tr>
                         <td>{{ $counter++ }}</td>
-                        <td>{{ $teacher->rollNumber }}</td>
-                        <td>{{ $teacher->firstName }} {{ $teacher->lastName }}</td>
-                        <td>{{ $teacher->email }}</td>
-                        <td>{{ $teacher->address }}</td>
-                        <td>{{ $teacher->phoneNumber }}</td>
-                        @if($teacher->department_id == 1)
-                            <td>Chemistry</td>
-                        @else
-                            <td>Physics</td>
-                        @endif
+                        <td>{{ $data->departmentCode }}</td>
+                        <td>{{ $data->name }}</td>
                         <td>
-                            <a href="{{ route('admin.teachers.show',['id'=>$teacher->id]) }}"
+                            <a href="{{ route('admin.department.show',['id'=>$data->id]) }}"
                                 class="btn btn-primary btn-sm"><span class="iconify" data-icon="fa-solid:edit"
                                     data-inline="false"></span></a>
                             <form
-                                action="{{ route('admin.teachers.delete',['id'=>$teacher->id]) }}"
+                                action="{{ route('admin.department.delete',['id'=>$data->id]) }}"
                                 method="post">
                                 @csrf
                                 <input name="_method" type="hidden" value="DELETE">
@@ -67,7 +55,7 @@
     </script>
     <script>
         $(document).ready(function () {
-            $('#teacherTable').DataTable();
+            $('#departmentTable').DataTable();
         });
 
     </script>

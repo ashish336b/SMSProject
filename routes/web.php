@@ -46,6 +46,11 @@ Route::group(['middleware' => ['auth:admin'],'prefix'=>'admin'], function () {
     });
     Route::group(['prefix' => 'department'], function () {
         Route::get('/','Admin\DepartmentController@index')->name('admin.department');
+        Route::get('/add','Admin\DepartmentController@create')->name('admin.department.add');
+        Route::post('/add','Admin\DepartmentController@store')->name('admin.department.add');
+        Route::get('/show/{id}','Admin\DepartmentController@show')->name('admin.department.show');
+        Route::put('/show/{id}','Admin\DepartmentController@edit')->name('admin.department.update');
+        Route::delete('/delete/{id}','Admin\DepartmentController@destroy')->name('admin.department.delete');
     });
 });
 

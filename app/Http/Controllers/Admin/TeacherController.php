@@ -135,7 +135,7 @@ class TeacherController extends Controller
         $destroyData = Teachers::where('id', $teachers)->delete();
         if ($destroyData)
         {
-            return redirect(route('admin.teachers'));
+            return redirect(route('admin.teachers'))->with('danger',"Deleted Successfully");
         }
     }
 }

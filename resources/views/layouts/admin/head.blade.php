@@ -16,14 +16,16 @@
     <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
 
     <!-- Styles -->
-    <link href="{{url('/')}}/assets/css/lib/weather-icons.css" rel="stylesheet" />
-    <link href="{{url('/')}}/assets/css/lib/owl.carousel.min.css" rel="stylesheet" />
-    <link href="{{url('/')}}/assets/css/lib/owl.theme.default.min.css" rel="stylesheet" />
-    <link href="{{url('/')}}/assets/css/lib/font-awesome.min.css" rel="stylesheet">
-    <link href="{{url('/')}}/assets/css/lib/themify-icons.css" rel="stylesheet">
-    <link href="{{url('/')}}/assets/css/lib/menubar/sidebar.css" rel="stylesheet">
-    <link href="{{url('/')}}/assets/css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url('/') }}/assets/css/lib/weather-icons.css" rel="stylesheet" />
+    <link href="{{ url('/') }}/assets/css/lib/owl.carousel.min.css" rel="stylesheet" />
+    <link href="{{ url('/') }}/assets/css/lib/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="{{ url('/') }}/assets/css/lib/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ url('/') }}/assets/css/lib/themify-icons.css" rel="stylesheet">
+    <link href="{{ url('/') }}/assets/css/lib/menubar/sidebar.css" rel="stylesheet">
+    <link href="{{ url('/') }}/assets/css/lib/bootstrap.min.css" rel="stylesheet">
 
-    <link href="{{url('/')}}/assets/css/lib/helper.css" rel="stylesheet">
-    <link href="{{url('/')}}/assets/css/style.css" rel="stylesheet">
+    <link href="{{ url('/') }}/assets/css/lib/helper.css" rel="stylesheet">
+    <link href="{{ url('/') }}/assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <script src="https://code.iconify.design/1/1.0.5/iconify.min.js"></script>
 </head>

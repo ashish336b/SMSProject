@@ -1,7 +1,14 @@
 <div class="header">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-1 col-xs-6">
+                <div class="hamburger sidebar-toggle">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
+            </div>
+            <div class="col-lg-11 col-xs-6">
                 <div class="float-right">
                     <ul>
                         <li class="header-icon dib"><span class="user-avatar">{{Auth::user()->name}} <i

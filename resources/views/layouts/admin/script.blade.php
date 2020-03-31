@@ -10,3 +10,8 @@
 <script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
 
 <script src="{{url('/')}}/assets/js/scripts.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+@stack('customScript')

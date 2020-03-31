@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\Department;
 
 class DepartmentController extends Controller
 {
@@ -14,7 +15,10 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        return "department page";
+        $departmentData = Department::all();
+        return view('admin.department.index',[
+            'departmentData'=> $departmentData
+        ]);
     }
 
     /**
@@ -24,7 +28,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.department.add');
     }
 
     /**
@@ -35,7 +39,17 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'departmentCode' => ['required', 'string', 'max:255', 'unique:department'],
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+        $addNewTeacher = Department::create([
+            'departmentCode' => $request->departmentCode,
+            'name' => $request->name,
+        ]);
+        if ($addNewTeacher) {
+            return redirect(route('admin.department.add'))->with('success', 'Department Added Successfully');
+        }
     }
 
     /**
@@ -46,7 +60,10 @@ class DepartmentController extends Controller
      */
     public function show($id)
     {
-        //
+        $departmentData = Department::where('id', $id)->first();
+        return view("admin.department.edit",[
+            'departmentData'=> $departmentData
+        ]);
     }
 
     /**
@@ -55,9 +72,15 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        //
+        $data = Department::where('id', $id)->update([
+            'departmentCode' => $request->departmentCode,
+            'name' => $request->name,
+        ]);
+        if ($data) {
+            return redirect(route('admin.department.update',['id'=>$id]))->with('success', "updated Successfully");
+        }
     }
 
     /**
@@ -80,6 +103,10 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $destroyData = Department::where('id', $id)->delete();
+        if ($destroyData)
+        {
+            return redirect(route('admin.department'))->with("danger","deleted Successfully");
+        }
     }
 }
