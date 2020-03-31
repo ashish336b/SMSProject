@@ -28,6 +28,10 @@ class DepartmentSeeder extends Seeder
                 'departmentCode' => 'Com',
                 'name' => 'Computer Science',
             ],
+            [
+                'departmentCode' => 'BIO',
+                'name' => 'Biology',
+            ],
         ]);
     }
 }

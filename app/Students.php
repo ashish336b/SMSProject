@@ -38,8 +38,8 @@ class Students extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function classroom(Type $var = null)
+    public function classroom()
     {
-        
+        return $this->belongsTo("App\Model\Classroom");
     }
 }

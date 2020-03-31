@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Model\Department;
+use App\Students;
 use App\Teachers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -137,5 +139,6 @@ class TeacherController extends Controller
         {
             return redirect(route('admin.teachers'))->with('danger',"Deleted Successfully");
         }
+        return null;
     }
 }
