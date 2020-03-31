@@ -15,13 +15,14 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('rollNumber');
+            $table->string('rollNumber');
             $table->string('firstName');
             $table->string('lastName');
             $table->string('email')->unique();
             $table->string('password');
             $table->string('phoneNumber');
             $table->string('address');
+            $table->integer('isFeePaid');
             $table->enum('gender', ['male', 'female']);
             $table->integer('classroom_id'); //foreign to class
             $table->rememberToken();

@@ -39,7 +39,7 @@
                                     <div class="col-md-6">
                                         <input id="firstName" type="text"
                                                class="form-control{{ $errors->has('firstName') ? ' is-invalid' : '' }}"
-                                               name="firstName" value="{{ old('firstName') }}"  autofocus>
+                                               name="firstName" value="{{ old('firstName') }}" autofocus>
 
                                         @if ($errors->has('firstName'))
                                             <span class="invalid-feedback" role="alert">
@@ -55,7 +55,7 @@
                                     <div class="col-md-6">
                                         <input id="lastName" type="text"
                                                class="form-control{{ $errors->has('lastName') ? ' is-invalid' : '' }}"
-                                               name="lastName" value="{{ old('lastName') }}"  autofocus>
+                                               name="lastName" value="{{ old('lastName') }}" autofocus>
 
                                         @if ($errors->has('lastName'))
                                             <span class="invalid-feedback" role="alert">
@@ -72,7 +72,7 @@
                                     <div class="col-md-6">
                                         <input id="email" type="email"
                                                class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                               name="email" value="{{ old('email') }}" >
+                                               name="email" value="{{ old('email') }}">
 
                                         @if ($errors->has('email'))
                                             <span class="invalid-feedback" role="alert">
@@ -89,7 +89,7 @@
                                     <div class="col-md-6">
                                         <input id="password" type="password"
                                                class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                               name="password" >
+                                               name="password">
 
                                         @if ($errors->has('password'))
                                             <span class="invalid-feedback" role="alert">
@@ -105,7 +105,7 @@
 
                                     <div class="col-md-6">
                                         <input id="password-confirm" type="password" class="form-control"
-                                               name="password_confirmation" >
+                                               name="password_confirmation">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -115,7 +115,7 @@
                                     <div class="col-md-6">
                                         <input id="address" type="text"
                                                class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}"
-                                               name="address" value="{{ old('address') }}"  autofocus>
+                                               name="address" value="{{ old('address') }}" autofocus>
 
                                         @if ($errors->has('address'))
                                             <span class="invalid-feedback" role="alert">
@@ -131,7 +131,7 @@
                                     <div class="col-md-6">
                                         <input id="phoneNumber" type="text"
                                                class="form-control{{ $errors->has('phoneNumber') ? ' is-invalid' : '' }}"
-                                               name="phoneNumber" value="{{ old('phoneNumber') }}"  autofocus>
+                                               name="phoneNumber" value="{{ old('phoneNumber') }}" autofocus>
 
                                         @if ($errors->has('phoneNumber'))
                                             <span class="invalid-feedback" role="alert">
@@ -147,8 +147,9 @@
                                         <select name="department_id"
                                                 class="form-control {{$errors->has('department')? 'is-invalid': ''}}"
                                                 id="department">
-                                            <option value="1">Physics</option>
-                                            <option value="2">Chemistry</option>
+                                            @foreach($departmentData as $item)
+                                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                            @endforeach
                                         </select>
                                         @if ($errors->has('department'))
                                             <span class="invalid-feedback" role="alert">

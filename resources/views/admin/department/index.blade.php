@@ -45,6 +45,13 @@
     </div>
 </div>
 @endsection
+@push('customStyle')
+    <style>
+        tbody tr  td {
+            color: black;
+        }
+    </style>
+@endpush
 @push('customScript')
     <script>
         function deleteConfirm() {

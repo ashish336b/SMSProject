@@ -31,7 +31,10 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        return view('admin.teachers.add');
+        $departmentData = Department::all('id','name');
+        return view('admin.teachers.add', [
+            'departmentData' => $departmentData
+        ]);
     }
 
     /**
@@ -75,8 +78,9 @@ class TeacherController extends Controller
      */
     public function show($teachers)
     {
+        $departmentData = Department::all('id','name');
         $oneTeacher = Teachers::where("id", $teachers)->first();
-        return view('admin.teachers.edit', ['oneTeacher' => $oneTeacher]);
+        return view('admin.teachers.edit', ['oneTeacher' => $oneTeacher,'departmentData'=> $departmentData]);
     }
 
     /**
@@ -108,8 +112,8 @@ class TeacherController extends Controller
             'department_id' => $request->department_id
         ]);
         if ($data) {
-            return redirect(route('admin.teachers.update',['id'=>$teachers]))->with('success', "updated Successfully");
-        }else{
+            return redirect(route('admin.teachers.update', ['id' => $teachers]))->with('success', "updated Successfully");
+        } else {
             dd("failed");
         }
     }
@@ -135,9 +139,8 @@ class TeacherController extends Controller
     public function destroy($teachers)
     {
         $destroyData = Teachers::where('id', $teachers)->delete();
-        if ($destroyData)
-        {
-            return redirect(route('admin.teachers'))->with('danger',"Deleted Successfully");
+        if ($destroyData) {
+            return redirect(route('admin.teachers'))->with('danger', "Deleted Successfully");
         }
         return null;
     }

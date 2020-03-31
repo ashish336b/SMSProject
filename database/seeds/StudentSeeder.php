@@ -21,9 +21,11 @@ class StudentSeeder extends Seeder
             'password'=> Hash::make($password),
             'phoneNumber'=> '987654321',
             'address'=> 'Kathmandu',
+            'isFeePaid'=>'1',
             'gender'=>'male',
             'classroom_id'=> '1'
         ]);
+        $gender = ['Male', 'Female'];
         for($i=1;$i<55;$i++)
         {
             DB::table("students")->insert([
@@ -35,6 +37,8 @@ class StudentSeeder extends Seeder
                     "password"=> Hash::make($password),
                     "phoneNumber"=> $faker->numberBetween(1000000, 999999999),
                     "address"=> $faker->address,
+                    'gender'=> $gender[$faker->numberBetween(0,1)],
+                    'isFeePaid'=> $faker->numberBetween(0,1),
                     "classroom_id"=> rand(1,10)
                 ],
             ]);
