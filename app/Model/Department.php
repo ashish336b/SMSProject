@@ -13,5 +13,8 @@ class Department extends Model
     {
        return $this->hasMany('App\Teachers');
     }
-
+    public function classroom()
+    {
+        return $this->hasMany('App\Model\Classroom');
+    }
 }

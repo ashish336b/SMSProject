@@ -41,5 +41,4 @@ class Teachers extends Authenticatable
     {
         return $this->belongsTo('App\Model\Department');
     }
-
 }

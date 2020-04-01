@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNotificationTable extends Migration
+class CreateSendNotificationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateNotificationTable extends Migration
      */
     public function up()
     {
-        Schema::create('notification', function (Blueprint $table) {
+        Schema::create('sendnotification', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('to', ['1', '2', '3']); //1 for teacher 2 for student 3 for both
+            $table->enum('to', ['Student', 'Teacher', 'Both']); //1 for student 2 for teacher 3 for both
+            $table->string('subject');
             $table->string('message');
             $table->timestamps();
         });

@@ -51,6 +51,33 @@ class StudentController extends Controller
         if ($addNewStudent) {
             return redirect(route('admin.students.add'))->with('success', 'Student Added Successfully');
         }
+        return null;
+    }
+
+    public function show(Request $request , $id)
+    {
+        $classroomData = Classroom::all('id', 'name');
+        $studentData = Students::where('id',$id)->first();
+       return view('admin.student.edit',['classroomData'=> $classroomData,'studentData'=>$studentData]);
+    }
+
+    public function edit(Request $request , $id)
+    {
+        $editStudent = Students::where('id',$id)->update([
+            'rollNumber' => $request->rollNumber,
+            'firstName' => $request->firstName,
+            'lastName' => $request->lastName,
+            'email' => $request->email,
+            'address' => $request->address,
+            'phoneNumber' => $request->phoneNumber,
+            'classroom_id' => $request->classroom_id,
+            'isFeePaid'=> 0,
+            'gender'=> $request->gender
+        ]);
+        if ($editStudent) {
+            return redirect(route('admin.students'))->with('success', 'Student Edited Successfully');
+        }
+        return null;
     }
 
     public function destroy($id)

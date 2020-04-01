@@ -24,7 +24,7 @@ class TeacherSeeder extends Seeder
             'address'=> 'Kathmandu',
             'department_id'=> '1'
         ]);
-        for($i=1;$i<100;$i++)
+        for($i=1;$i<40;$i++)
         {
             DB::table("teachers")->insert([
                 [

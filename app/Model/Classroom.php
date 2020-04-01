@@ -13,4 +13,8 @@ class Classroom extends Model
     {
         return $this->hasMany('App\Students');
     }
+    public function department()
+    {
+        return $this->belongsTo('App\Model\Department');
+    }
 }
