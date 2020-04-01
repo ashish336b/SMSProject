@@ -17,7 +17,7 @@ class CreateSendNotificationTable extends Migration
             $table->increments('id');
             $table->enum('to', ['Student', 'Teacher', 'Both']); //1 for student 2 for teacher 3 for both
             $table->string('subject');
-            $table->string('message');
+            $table->string('message',9999);
             $table->timestamps();
         });
     }

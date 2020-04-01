@@ -14,11 +14,11 @@ class SendNotificationSeeder extends Seeder
     {
         $faker = Faker::create('App\Model\SendNotification');
         $to = array('Student', 'Teacher', 'Both');
-        for ($i = 1; $i < 5; $i++) {
+        for ($i = 1; $i < 18; $i++) {
             DB::table('sendNotification')->insert([
                 'to' => $to[$faker->numberBetween(0, 2)],
                 'subject'=> $faker->sentence,
-                'message' => $faker->paragraph,
+                'message' => $faker->paragraph(20),
                 'created_at' => now(),
                 'updated_at' => now()
             ]);

@@ -79,9 +79,14 @@ Route::group(['middleware' => ['auth:admin'],'prefix'=>'admin'], function () {
         Route::delete('/delete/{id}', 'Admin\NotificationController@destroy')->name('admin.notification.delete');
     });
 });
-
 Route::prefix('students')->group(function () {
     Route::get('/login', 'Auth\StudentsLoginController@showLoginForm')->name('students.login');
     Route::post('/login', 'Auth\StudentsLoginController@login')->name('students.login.submit');
-    Route::get('/', 'StudentsController@index')->name('students.dashboard');
 });
+
+Route::group(['middleware'=>'auth:students','prefix'=>'students'], function(){
+    Route::get('/', 'Students\StudentsController@index')->name('students.dashboard');
+    Route::get('/notice', 'Students\StudentsController@notice')->name('students.notice');
+});
+
+
