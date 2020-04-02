@@ -3,6 +3,9 @@
         <div class="nano-content">
             <div class="logo"><a href="{{ url('/') }}/admin"><span>Admin Dashboard</span></a></div>
             <ul>
+                <li class="label">Dashboard</li>
+                <li class="{{Route::is('admin.dashboard')?'active': ''}}"><a href="{{ route('admin.dashboard') }}"><i class="ti-calendar"></i> Stats </a>
+                </li>
                 <li class="label">Student</li>
                 <li class="{{Route::is('admin.teachers')?'active': ''}}"><a href="{{ route('admin.teachers') }}"><i class="ti-calendar"></i> Teacher </a>
                 </li>

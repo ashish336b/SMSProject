@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin;
+use App\Model\Department;
+use App\Students;
+use App\Teachers;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -13,7 +17,7 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-        
+
     }
 
     /**
@@ -23,6 +27,15 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $noOfStudent = Students::all()->count();
+        $noOfDepartment = Department::all()->count();
+        $noOfTeacher = Teachers::all()->count();
+        $noOfAdmin = Admin::all()->count();
+        return view('admin.index', [
+            'noOfStudent' => $noOfStudent,
+            'noOfDepartment' => $noOfDepartment,
+            'noOfTeacher' => $noOfTeacher,
+            'noOfAdmin' => $noOfAdmin
+        ]);
     }
 }
