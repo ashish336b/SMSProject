@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Students;
 
 use App\Paypal\Paypal;
+use App\Students;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use PayPal\Api\Payment;
 use PayPal\Api\PaymentExecution;
+use App\Model\Payment as PaymentRecord;
 
 class PaymentController extends Controller
 {
@@ -25,17 +28,33 @@ class PaymentController extends Controller
             $execution = new PaymentExecution();
             $execution->setPayerId($request->PayerID);
             $result = $payment->execute($execution, $paypal->apiContext);
-             if ($result)
-             {
-                 return redirect(route('students.payment'))->with('success', 'Payment Made Successfully');
-//                 echo  $result->toJSON();
-                 //logic here
-             }
+            if ($result) {
+                $makePaymentRecord = PaymentRecord::create([
+                    'paymentId' => $paymentId,
+                    'payerId' => $request->PayerID,
+                    'students_id' => Auth::user()->id,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+                if ($makePaymentRecord) {
+                    $updateStudentRecord = Students::where('id', Auth::user()->id)->update([
+                        'isFeePaid' => 1
+                    ]);
+                    if ($updateStudentRecord) {
+                        return redirect(route('students.payment'))->with('success', 'Payment Made Successfully');
+                    }
+                }
+            }
         }
+        return null;
     }
 
     public function createPayment()
     {
+        $checkifPaidAlready = Students::where('id', Auth::user()->id)->first();
+        if ($checkifPaidAlready->isFeePaid) {
+            return redirect(route('students.payment'))->with('success', 'Payment is Already Made. No need to Pay');
+        }
         $paypal = new Paypal();
         return redirect($paypal->createPayment());
     }

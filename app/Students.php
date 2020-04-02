@@ -10,14 +10,14 @@ class Students extends Authenticatable
 {
     use Notifiable;
     protected $guard = 'students';
-    protected  $table = 'students';
+    protected $table = 'students';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'rollNumber','firstName', 'lastName', 'email', 'password', 'phoneNumber', 'address', 'isFeePaid', 'gender',
+        'rollNumber', 'firstName', 'lastName', 'email', 'password', 'phoneNumber', 'address', 'isFeePaid', 'gender',
         'classroom_id',
     ];
 
@@ -43,4 +43,10 @@ class Students extends Authenticatable
     {
         return $this->belongsTo("App\Model\Classroom");
     }
+
+    public function payment()
+    {
+        return $this->hasMany('App\Model\Payment');
+    }
+
 }
