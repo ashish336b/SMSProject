@@ -87,6 +87,11 @@ Route::prefix('students')->group(function () {
 Route::group(['middleware'=>'auth:students','prefix'=>'students'], function(){
     Route::get('/', 'Students\StudentsController@index')->name('students.dashboard');
     Route::get('/notice', 'Students\StudentsController@notice')->name('students.notice');
+    Route::group(['prefix'=>'payment'], function (){
+        Route::get('/','Students\PaymentController@index')->name('students.payment');
+        Route::post('/','Students\PaymentController@createPayment')->name('students.payment');
+        Route::get('/executePayment','Students\PaymentController@executePayment')->name('students.executePayment');
+    });
 });
 
 

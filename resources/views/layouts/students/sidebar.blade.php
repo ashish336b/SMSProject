@@ -5,6 +5,7 @@
             <ul>
                 <li class="label">Student</li>
                 <li class="{{Route::is('students.notice')?'active': ''}}"><a href="{{ route('students.notice') }}"><i class="ti-calendar"></i> Notice </a>
+                <li class="{{Route::is('students.payment')?'active': ''}}"><a href="{{ route('students.payment') }}"><i class="ti-calendar"></i> PayFee </a>
                 </li>
                 </li>
             </ul>
