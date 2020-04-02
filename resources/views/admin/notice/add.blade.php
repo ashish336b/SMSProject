@@ -8,7 +8,7 @@
                         <h4>Create Notification</h4>
                     </div>
                     <div class="col-lg-8 justify-content-center">
-                        <form action="{{route('admin.notification.add')}}" method="POST">
+                        <form action="{{route('admin.notice.add')}}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="to">Send To:</label>

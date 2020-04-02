@@ -16,7 +16,7 @@
                 <li class="label">Information</li>
                 {{-- <li><a href="{{ route('admin.message') }}"><i class="ti-calendar"></i>Message</a> --}}
                 </li>
-                <li class="{{Route::is('admin.notification')?'active': ''}}"><a href="{{ route('admin.notification') }}"><i class="ti-calendar"></i>Notice</a></li>
+                <li class="{{Route::is('admin.notice')?'active': ''}}"><a href="{{ route('admin.notice') }}"><i class="ti-calendar"></i>Notice</a></li>
             </ul>
         </div>
     </div>

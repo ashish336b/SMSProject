@@ -2,7 +2,7 @@
 @section('adminContent')
     <div class="container">
         <div class="p-2">
-            <div class="text-right pb-2"><a href="{{ route("admin.notification.add") }}"
+            <div class="text-right pb-2"><a href="{{ route("admin.notice.add") }}"
                                             class="btn btn-info btn-sm">Create New Notification <span class="iconify"
                                                                                   data-icon="bx:bxs-message-add"
                                                                                   data-inline="false"></span></a></div>
@@ -22,7 +22,7 @@
                 @php
                     $counter = 1;
                 @endphp
-                @foreach($allNotificationData as $item)
+                @foreach($allNoticeData as $item)
                     <tr>
                         <td>{{ $counter++ }}</td>
                         <td>{{$item->to}}</td>
@@ -30,11 +30,11 @@
                         <td>{{$item->message}}</td>
                         <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y/m/d')}}</td>
                         <td>
-                            <a href="{{ route('admin.notification.show',['id'=>$item->id]) }}"
+                            <a href="{{ route('admin.notice.show',['id'=>$item->id]) }}"
                                class="btn btn-primary btn-sm"><span class="iconify" data-icon="fa-solid:edit"
                                                                     data-inline="false"></span></a>
                             <form
-                                action="{{ route('admin.notification.delete',['id'=>$item->id]) }}"
+                                action="{{ route('admin.notice.delete',['id'=>$item->id]) }}"
                                 method="post">
                                 @csrf
                                 <input name="_method" type="hidden" value="DELETE">

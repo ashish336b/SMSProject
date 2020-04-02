@@ -2,8 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
-
-class SendNotificationSeeder extends Seeder
+class SendNoticeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,16 +11,17 @@ class SendNotificationSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create('App\Model\SendNotification');
+        $faker = Faker::create('App\Model\SendNotice');
         $to = array('Student', 'Teacher', 'Both');
         for ($i = 1; $i < 18; $i++) {
-            DB::table('sendNotification')->insert([
+            DB::table('sendnotice')->insert([
                 'to' => $to[$faker->numberBetween(0, 2)],
                 'subject'=> $faker->sentence,
-                'message' => $faker->paragraph(20),
+                'message' => $faker->paragraph(10),
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
         }
     }
 }
+

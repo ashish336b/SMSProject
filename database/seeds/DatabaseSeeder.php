@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             TeacherSeeder::class,
             StudentSeeder::class,
             ClassroomSeeder::class,
-            SendNotificationSeeder::class
+            SendNoticeSeeder::class
         ]);
     }
 }

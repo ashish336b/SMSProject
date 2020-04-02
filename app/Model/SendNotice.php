@@ -4,8 +4,8 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SendNotification extends Model
+class SendNotice extends Model
 {
-    protected $table = 'sendnotification';
+    protected $table = 'sendnotice';
     protected $fillable = ['to','subject','message'];
 }

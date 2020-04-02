@@ -70,13 +70,13 @@ Route::group(['middleware' => ['auth:admin'],'prefix'=>'admin'], function () {
     Route::group(['prefix' => 'message'], function () {
         Route::get('/','Admin\MessageController@index')->name('admin.message');
     });
-    Route::group(['prefix' => 'notification'], function () {
-        Route::get('/','Admin\NotificationController@index')->name('admin.notification');
-        Route::get('/add', 'Admin\NotificationController@create')->name('admin.notification.add');
-        Route::post('/add', 'Admin\NotificationController@store')->name('admin.notification.add');
-        Route::get('/show/{id}', 'Admin\NotificationController@show')->name('admin.notification.show');
-        Route::put('/show/{id}', 'Admin\NotificationController@edit')->name('admin.notification.update');
-        Route::delete('/delete/{id}', 'Admin\NotificationController@destroy')->name('admin.notification.delete');
+    Route::group(['prefix' => 'notice'], function () {
+        Route::get('/','Admin\NoticeController@index')->name('admin.notice');
+        Route::get('/add', 'Admin\NoticeController@create')->name('admin.notice.add');
+        Route::post('/add', 'Admin\NoticeController@store')->name('admin.notice.add');
+        Route::get('/show/{id}', 'Admin\NoticeController@show')->name('admin.notice.show');
+        Route::put('/show/{id}', 'Admin\NoticeController@edit')->name('admin.notice.update');
+        Route::delete('/delete/{id}', 'Admin\NoticeController@destroy')->name('admin.notice.delete');
     });
 });
 Route::prefix('students')->group(function () {
