@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\Classroom;
+use App\Students;
+use App\Teachers;
 use Illuminate\Http\Request;
 use App\Model\Department;
 
@@ -106,6 +108,11 @@ class DepartmentController extends Controller
     {
         $destroyData = Department::where('id', $id)->delete();
         if ($destroyData) {
+            $classRoomData = Classroom::where('department_id', $id)->get();
+            foreach ($classRoomData as $item) {
+                Students::where('classroom_id', $item->id)->delete();
+            }
+            Teachers::where('department_id', $id)->delete();
             Classroom::where('department_id', $id)->delete();
             return redirect(route('admin.department'))->with("danger", "deleted Successfully");
         }
