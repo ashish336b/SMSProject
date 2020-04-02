@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Model\Classroom;
 use Illuminate\Http\Request;
 use App\Model\Department;
 
@@ -16,8 +17,8 @@ class DepartmentController extends Controller
     public function index()
     {
         $departmentData = Department::all();
-        return view('admin.department.index',[
-            'departmentData'=> $departmentData
+        return view('admin.department.index', [
+            'departmentData' => $departmentData
         ]);
     }
 
@@ -34,7 +35,7 @@ class DepartmentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -55,21 +56,21 @@ class DepartmentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $departmentData = Department::where('id', $id)->first();
-        return view("admin.department.edit",[
-            'departmentData'=> $departmentData
+        return view("admin.department.edit", [
+            'departmentData' => $departmentData
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id, Request $request)
@@ -79,15 +80,15 @@ class DepartmentController extends Controller
             'name' => $request->name,
         ]);
         if ($data) {
-            return redirect(route('admin.department.update',['id'=>$id]))->with('success', "updated Successfully");
+            return redirect(route('admin.department.update', ['id' => $id]))->with('success', "updated Successfully");
         }
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -98,15 +99,16 @@ class DepartmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         $destroyData = Department::where('id', $id)->delete();
-        if ($destroyData)
-        {
-            return redirect(route('admin.department'))->with("danger","deleted Successfully");
+        if ($destroyData) {
+            Classroom::where('department_id', $id)->delete();
+            return redirect(route('admin.department'))->with("danger", "deleted Successfully");
         }
+        return null;
     }
 }
