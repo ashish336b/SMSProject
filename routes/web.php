@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//Route::get('/register','Auth\RegisterController@register')->name('register')->middleware('auth:admin');
+Route::get('/register','Auth\RegisterController@register')->name('register')->middleware('auth:admin');
 
 
 /* admin login and dashboard Routes */
