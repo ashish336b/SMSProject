@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/register','Auth\RegisterController@register')->name('register')->middleware('auth:admin');
+Route::get('/register', 'Auth\RegisterController@register')->name('register')->middleware('auth:admin');
 
 
 /* admin login and dashboard Routes */
@@ -28,8 +28,14 @@ Route::prefix('admin')->group(function () {
 });
 
 /*Routes of admin*/
-Route::group(['middleware' => ['auth:admin'],'prefix'=>'admin'], function () {
+Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
+    Route::get('/list', 'AdminController@list')->name('admin.list');
+    Route::get('/add', 'AdminController@create')->name('admin.add');
+    Route::post('/add', 'AdminController@store')->name('admin.add');
+    Route::get('/show/{id}', 'AdminController@show')->name('admin.show');
+    Route::put('/show/{id}', 'AdminController@edit')->name('admin.update');
+    Route::delete('/delete/{id}', 'AdminController@destroy')->name('admin.delete');
 
     /* admin/student/--- */
     Route::prefix('students')->group(function () {
@@ -51,27 +57,27 @@ Route::group(['middleware' => ['auth:admin'],'prefix'=>'admin'], function () {
     });
     /* admin/department */
     Route::group(['prefix' => 'department'], function () {
-        Route::get('/','Admin\DepartmentController@index')->name('admin.department');
-        Route::get('/add','Admin\DepartmentController@create')->name('admin.department.add');
-        Route::post('/add','Admin\DepartmentController@store')->name('admin.department.add');
-        Route::get('/show/{id}','Admin\DepartmentController@show')->name('admin.department.show');
-        Route::put('/show/{id}','Admin\DepartmentController@edit')->name('admin.department.update');
-        Route::delete('/delete/{id}','Admin\DepartmentController@destroy')->name('admin.department.delete');
+        Route::get('/', 'Admin\DepartmentController@index')->name('admin.department');
+        Route::get('/add', 'Admin\DepartmentController@create')->name('admin.department.add');
+        Route::post('/add', 'Admin\DepartmentController@store')->name('admin.department.add');
+        Route::get('/show/{id}', 'Admin\DepartmentController@show')->name('admin.department.show');
+        Route::put('/show/{id}', 'Admin\DepartmentController@edit')->name('admin.department.update');
+        Route::delete('/delete/{id}', 'Admin\DepartmentController@destroy')->name('admin.department.delete');
     });
     /* admin/classroom */
     Route::group(['prefix' => 'classroom'], function () {
-        Route::get('/','Admin\ClassroomController@index')->name('admin.classroom');
-        Route::get('/add','Admin\ClassroomController@create')->name('admin.classroom.add');
-        Route::post('/add','Admin\ClassroomController@store')->name('admin.classroom.add');
-        Route::get('/show/{id}','Admin\ClassroomController@show')->name('admin.classroom.show');
-        Route::put('/show/{id}','Admin\ClassroomController@edit')->name('admin.classroom.update');
-        Route::delete('/delete/{id}','Admin\ClassroomController@destroy')->name('admin.classroom.delete');
+        Route::get('/', 'Admin\ClassroomController@index')->name('admin.classroom');
+        Route::get('/add', 'Admin\ClassroomController@create')->name('admin.classroom.add');
+        Route::post('/add', 'Admin\ClassroomController@store')->name('admin.classroom.add');
+        Route::get('/show/{id}', 'Admin\ClassroomController@show')->name('admin.classroom.show');
+        Route::put('/show/{id}', 'Admin\ClassroomController@edit')->name('admin.classroom.update');
+        Route::delete('/delete/{id}', 'Admin\ClassroomController@destroy')->name('admin.classroom.delete');
     });
     Route::group(['prefix' => 'message'], function () {
-        Route::get('/','Admin\MessageController@index')->name('admin.message');
+        Route::get('/', 'Admin\MessageController@index')->name('admin.message');
     });
     Route::group(['prefix' => 'notice'], function () {
-        Route::get('/','Admin\NoticeController@index')->name('admin.notice');
+        Route::get('/', 'Admin\NoticeController@index')->name('admin.notice');
         Route::get('/add', 'Admin\NoticeController@create')->name('admin.notice.add');
         Route::post('/add', 'Admin\NoticeController@store')->name('admin.notice.add');
         Route::get('/show/{id}', 'Admin\NoticeController@show')->name('admin.notice.show');
@@ -84,13 +90,13 @@ Route::prefix('students')->group(function () {
     Route::post('/login', 'Auth\StudentsLoginController@login')->name('students.login.submit');
 });
 
-Route::group(['middleware'=>'auth:students','prefix'=>'students'], function(){
+Route::group(['middleware' => 'auth:students', 'prefix' => 'students'], function () {
     Route::get('/', 'Students\StudentsController@index')->name('students.dashboard');
     Route::get('/notice', 'Students\StudentsController@notice')->name('students.notice');
-    Route::group(['prefix'=>'payment'], function (){
-        Route::get('/','Students\PaymentController@index')->name('students.payment');
-        Route::post('/','Students\PaymentController@createPayment')->name('students.payment');
-        Route::get('/executePayment','Students\PaymentController@executePayment')->name('students.executePayment');
+    Route::group(['prefix' => 'payment'], function () {
+        Route::get('/', 'Students\PaymentController@index')->name('students.payment');
+        Route::post('/', 'Students\PaymentController@createPayment')->name('students.payment');
+        Route::get('/executePayment', 'Students\PaymentController@executePayment')->name('students.executePayment');
     });
 });
 
