@@ -7,6 +7,7 @@ use App\Model\Department;
 use App\Students;
 use App\Teachers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -32,7 +33,7 @@ class AdminController extends Controller
         $noOfDepartment = Department::all()->count();
         $noOfTeacher = Teachers::all()->count();
         $noOfAdmin = Admin::all()->count();
-        return view('admin.index', [
+        return view('admin.admindashboard', [
             'noOfStudent' => $noOfStudent,
             'noOfDepartment' => $noOfDepartment,
             'noOfTeacher' => $noOfTeacher,
@@ -83,14 +84,37 @@ class AdminController extends Controller
             'name' => $request->name
         ]);
         if ($updateAdmin) {
+            if ($request->has('requestFrom')) {
+                return redirect(route('admin.profile'))->with('success', 'Profile Edited Successfully');
+            }
             return redirect(route('admin.list'))->with('success', 'Admin Updated Successfully');
         }
+        return "errors in updating";
     }
 
     public function destroy($id)
     {
         if (Admin::where('id', $id)->delete()) {
             return redirect(route('admin.list'))->with('success', 'Admin Deleted Successfully');
+        }
+    }
+
+    public function profile()
+    {
+        $adminData = Admin::where('id', Auth::user()->id)->first();
+        return view('admin.profile', ['adminData' => $adminData]);
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+        ]);
+        $updatePassword = Admin::where('id', Auth::user()->id)->update([
+            'password' => Hash::make($request->password),
+        ]);
+        if ($updatePassword) {
+            return redirect(route('admin.profile'))->with('success', 'Password Updated Successfully');
         }
     }
 

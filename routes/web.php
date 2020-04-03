@@ -36,6 +36,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function () 
     Route::get('/show/{id}', 'AdminController@show')->name('admin.show');
     Route::put('/show/{id}', 'AdminController@edit')->name('admin.update');
     Route::delete('/delete/{id}', 'AdminController@destroy')->name('admin.delete');
+    Route::get('/profile','AdminController@profile')->name('admin.profile');
+    Route::put('/changePassword','AdminController@changePassword')->name('admin.changePassword');
 
     /* admin/student/--- */
     Route::prefix('students')->group(function () {

@@ -16,7 +16,7 @@
                             <div class="drop-down dropdown-profile">
                                 <div class="dropdown-content-body">
                                     <ul>
-                                        <li><a href="#"><i class="ti-user"></i> <span>Profile</span></a></li>
+                                        <li><a href="{{route('admin.profile')}}"><i class="ti-user"></i> <span>Change Profile</span></a></li>
                                         <li><a href="#"
                                                onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
