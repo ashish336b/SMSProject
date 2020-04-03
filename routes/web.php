@@ -94,6 +94,7 @@ Route::prefix('students')->group(function () {
 
 Route::group(['middleware' => 'auth:students', 'prefix' => 'students'], function () {
     Route::get('/', 'Students\StudentsController@index')->name('students.dashboard');
+    Route::get('/profile', 'Students\StudentsController@index')->name('students.profile');
     Route::get('/notice', 'Students\StudentsController@notice')->name('students.notice');
     Route::group(['prefix' => 'payment'], function () {
         Route::get('/', 'Students\PaymentController@index')->name('students.payment');
