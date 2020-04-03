@@ -27,7 +27,7 @@
                         <td>{{ $counter++ }}</td>
                         <td>{{$item->to}}</td>
                         <td>{{$item->subject}}</td>
-                        <td>{{$item->message}}</td>
+                        <td>{!! $item->message !!}</td>
                         <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y/m/d')}}</td>
                         <td>
                             <a href="{{ route('admin.notice.show',['id'=>$item->id]) }}"
