@@ -21,7 +21,21 @@ class NoticeController extends Controller
 
     public function show($id)
     {
-        return $id;
+        $noticeData = SendNotice::where('id', $id)->first();
+        return view('admin.notice.edit', ['noticeData' => $noticeData]);
+    }
+
+    public function edit(Request $request, $id)
+    {
+        $updateNotice = SendNotice::where("id", $id)->update([
+            "to" => $request->to,
+            'subject' => $request->subject,
+            'message' => $request->message
+        ]);
+        if ($updateNotice) {
+            return redirect(route('admin.notice'))->with("success", "Notice Updated Successfully");
+        }
+        return null;
     }
 
     public function store(Request $request)
@@ -31,12 +45,12 @@ class NoticeController extends Controller
             'subject' => ['required', 'string', 'max:255'],
             'message' => ['required', 'string', 'max:500'],
         ]);
-        $createNotification = SendNotice::create([
+        $createNotice = SendNotice::create([
             'to' => $request->to,
             'subject' => $request->subject,
             'message' => $request->message,
         ]);
-        if ($createNotification) {
+        if ($createNotice) {
             return redirect(route('admin.notice'))->with('success', "created Successfully");
         }
     }

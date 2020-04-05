@@ -52,8 +52,11 @@
 @endsection
 @push('customStyle')
     <style>
-        tbody tr td {
+        tbody tr td  {
             color: black;
+        }
+        tbody tr td p{
+            color : black;
         }
 
         tbody tr td #red {
