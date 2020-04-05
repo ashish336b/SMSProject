@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Students;
 
+use App\Admin;
+use App\Notifications\SchoolFeePaid;
 use App\Paypal\Paypal;
 use App\Students;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use PayPal\Api\Payment;
 use PayPal\Api\PaymentExecution;
 use App\Model\Payment as PaymentRecord;
@@ -41,6 +44,8 @@ class PaymentController extends Controller
                         'isFeePaid' => 1
                     ]);
                     if ($updateStudentRecord) {
+                        $invoice = PaymentRecord::where('paymentId', $request->paymentId)->first();
+                        Notification::send(Admin::all(), new SchoolFeePaid($invoice));
                         return redirect(route('students.payment'))->with('success', 'Payment Made Successfully');
                     }
                 }
