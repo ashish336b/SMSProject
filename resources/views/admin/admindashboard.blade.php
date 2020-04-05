@@ -27,28 +27,32 @@
                     New Notification
                 </div>
                 <div class="card-body scroll">
-                    @foreach($unreadNotification as $notification)
-                        @isset($notification->data['payment'])
-                            <ul class="p-2 bg-ash">
-                                <li>
-                                    <a href="#">
-                                        <div class="notification-content">
-                                            <small
-                                                class="notification-timestamp pull-right">{{$notification->created_at->diffForHumans()}}</small>
-                                            <div class="notification-heading">School Fee Payment
-                                                @if($fetchStudentData = \App\Students::where("id",$notification->data["payment"]["students_id"])->first())
-                                                    By {{$fetchStudentData->firstName}}
-                                                @endif
-
+                    @if(count($unreadNotification))
+                        @foreach($unreadNotification as $notification)
+                            @isset($notification->data['payment'])
+                                <ul class="p-2 bg-ash">
+                                    <li>
+                                        <a href="#">
+                                            <div class="notification-content">
+                                                <small
+                                                    class="notification-timestamp pull-right">{{$notification->created_at->diffForHumans()}}</small>
+                                                <div class="notification-heading">
+                                                    @if($fetchStudentData = \App\Students::where("id",$notification->data["payment"]["students_id"])->first())
+                                                        {{$fetchStudentData->firstName}} {{$fetchStudentData->lastName}} paid his School Fee
+                                                    @endif
+                                                </div>
+                                                <div class="notification-text">Amount 4000</div>
                                             </div>
-                                            <div class="notification-text">Amount 4000</div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        @endisset
-                    @endforeach
+                                        </a>
+                                    </li>
+                                </ul>
+                            @endisset
+                        @endforeach
+                    @else
+                        <p class="text-center">No new Notification</p>
+                    @endif
                 </div>
+
             </div>
         </div>
         <!-- /# column -->

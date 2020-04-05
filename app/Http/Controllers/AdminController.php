@@ -33,9 +33,6 @@ class AdminController extends Controller
         $noOfDepartment = Department::all()->count();
         $noOfTeacher = Teachers::all()->count();
         $noOfAdmin = Admin::all()->count();
-        //read notification
-        $admin = Admin::find(Auth::user()->id);
-
 //        dd($admin->unreadNotifications);
         return view('admin.admindashboard', [
             "adminStats" => [
@@ -44,7 +41,7 @@ class AdminController extends Controller
                 'noOfTeacher' => ["No of Teacher",$noOfTeacher,"progress-bar progress-bar-primary w-65"],
                 'noOfAdmin' => ["No of Admin",$noOfAdmin,"progress-bar progress-bar-warning w-95"]
             ],
-            "unreadNotification"=> $admin->unreadNotifications
+            "unreadNotification"=> Auth::user()->unreadNotifications
         ]);
     }
 
