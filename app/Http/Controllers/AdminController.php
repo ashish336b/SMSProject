@@ -35,6 +35,7 @@ class AdminController extends Controller
         $noOfAdmin = Admin::all()->count();
         //read notification
         $admin = Admin::find(Auth::user()->id);
+
 //        dd($admin->unreadNotifications);
         return view('admin.admindashboard', [
             "adminStats" => [

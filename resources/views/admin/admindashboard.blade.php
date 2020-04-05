@@ -36,7 +36,11 @@
                                             <small
                                                 class="notification-timestamp pull-right">{{$notification->created_at->diffForHumans()}}</small>
                                             <div class="notification-heading">School Fee Payment
-                                                By {{\App\Students::where("id",$notification->data["payment"]["students_id"])->first()->firstName}}</div>
+                                                @if($fetchStudentData = \App\Students::where("id",$notification->data["payment"]["students_id"])->first())
+                                                    By {{$fetchStudentData->firstName}}
+                                                @endif
+
+                                            </div>
                                             <div class="notification-text">Amount 4000</div>
                                         </div>
                                     </a>
