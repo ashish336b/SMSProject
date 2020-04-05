@@ -12,21 +12,11 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
 
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
         $noOfStudent = Students::all()->count();
@@ -34,15 +24,16 @@ class AdminController extends Controller
         $noOfTeacher = Teachers::all()->count();
         $noOfAdmin = Admin::all()->count();
 //        dd($admin->unreadNotifications);
-        return view('admin.admindashboard', [
+        $adminStats = collect([
             "adminStats" => [
-                'noOfStudent' => ["No of Student",$noOfStudent,"progress-bar progress-bar-danger w-85"],
-                'noOfDepartment' => ["No of Department",$noOfDepartment,"progress-bar progress-bar-success w-50"],
-                'noOfTeacher' => ["No of Teacher",$noOfTeacher,"progress-bar progress-bar-primary w-65"],
-                'noOfAdmin' => ["No of Admin",$noOfAdmin,"progress-bar progress-bar-warning w-95"]
+                'noOfStudent' => ["No of Student", $noOfStudent, "progress-bar progress-bar-danger w-85"],
+                'noOfDepartment' => ["No of Department", $noOfDepartment, "progress-bar progress-bar-success w-50"],
+                'noOfTeacher' => ["No of Teacher", $noOfTeacher, "progress-bar progress-bar-primary w-65"],
+                'noOfAdmin' => ["No of Admin", $noOfAdmin, "progress-bar progress-bar-warning w-95"]
             ],
-            "unreadNotification"=> Auth::user()->unreadNotifications
+            "unreadNotification" => Auth::user()->unreadNotifications
         ]);
+        return view('admin.admindashboard')->with($adminStats->all());
     }
 
     public function list()
