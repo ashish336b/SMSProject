@@ -45,7 +45,8 @@ class PaymentController extends Controller
                     ]);
                     if ($updateStudentRecord) {
                         $invoice = PaymentRecord::where('paymentId', $request->paymentId)->first();
-                        Notification::send(Admin::all(), new SchoolFeePaid($invoice));
+                        $notificationMessage = Auth::user()->firstName . " " . Auth::user()->lastName . " Paid School Fee";
+                        Notification::send(Admin::all(), new SchoolFeePaid($invoice, $notificationMessage));
                         return redirect(route('students.payment'))->with('success', 'Payment Made Successfully');
                     }
                 }

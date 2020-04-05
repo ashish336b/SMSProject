@@ -30,18 +30,16 @@
                     @if(count($unreadNotification))
                         @foreach($unreadNotification as $notification)
                             @isset($notification->data['payment'])
-                                <ul class="p-2 bg-ash">
+                                <ul class="p-2 bg-ash m-1">
                                     <li>
                                         <a href="#">
                                             <div class="notification-content">
                                                 <small
                                                     class="notification-timestamp pull-right">{{$notification->created_at->diffForHumans()}}</small>
                                                 <div class="notification-heading">
-                                                    @if($fetchStudentData = \App\Students::where("id",$notification->data["payment"]["students_id"])->first())
-                                                        {{$fetchStudentData->firstName}} {{$fetchStudentData->lastName}} paid his School Fee
-                                                    @endif
+                                                   {{$notification->data["message"]}}
                                                 </div>
-                                                <div class="notification-text">Amount 4000</div>
+                                                <div class="notification-text"></div>
                                             </div>
                                         </a>
                                     </li>

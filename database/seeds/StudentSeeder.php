@@ -22,7 +22,7 @@ class StudentSeeder extends Seeder
             'password'=> Hash::make($password),
             'phoneNumber'=> '987654321',
             'address'=> 'Kathmandu',
-            'isFeePaid'=>'1',
+            'isFeePaid'=>'0',
             'gender'=>'male',
             'classroom_id'=> '1'
         ]);
@@ -39,7 +39,7 @@ class StudentSeeder extends Seeder
                     "phoneNumber"=> $faker->numberBetween(1000000, 999999999),
                     "address"=> $faker->address,
                     'gender'=> $gender[$faker->numberBetween(0,1)],
-                    'isFeePaid'=> $faker->numberBetween(0,1),
+                    'isFeePaid'=> 0,
                     "classroom_id"=> rand(1,10)
                 ],
             ]);
