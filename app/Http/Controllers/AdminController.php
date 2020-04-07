@@ -14,7 +14,6 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-
     }
 
     public function index()
@@ -23,21 +22,20 @@ class AdminController extends Controller
         $noOfDepartment = Department::all()->count();
         $noOfTeacher = Teachers::all()->count();
         $noOfAdmin = Admin::all()->count();
-//        dd($admin->unreadNotifications);
+        //        dd($admin->unreadNotifications);
         $adminStats = collect([
             "adminStats" => [
                 'noOfStudent' => ["No of Student", $noOfStudent, "progress-bar progress-bar-danger w-85"],
                 'noOfDepartment' => ["No of Department", $noOfDepartment, "progress-bar progress-bar-success w-50"],
                 'noOfTeacher' => ["No of Teacher", $noOfTeacher, "progress-bar progress-bar-primary w-65"],
-                'noOfAdmin' => ["No of Admin", $noOfAdmin, "progress-bar progress-bar-warning w-95"]
+                'noOfAdmin' => ["No of Admin", $noOfAdmin, "progress-bar progress-bar-warning w-95"],
             ],
-            "unreadNotification" => Auth::user()->unreadNotifications
+            "unreadNotification" => Auth::user()->unreadNotifications,
         ]);
         return view('admin.admindashboard')->with($adminStats->all());
     }
 
-    public function list()
-    {
+    function list() {
         $adminData = Admin::all();
         return view('admin.listadmin', ['adminData' => $adminData]);
     }
@@ -58,7 +56,7 @@ class AdminController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'job_title' => 'admin'
+            'job_title' => 'admin',
         ]);
         if ($addAdmin) {
             return redirect(route('admin.list'))->with('success', 'Admin Added Successfully');
@@ -76,7 +74,7 @@ class AdminController extends Controller
     {
         $updateAdmin = Admin::where('id', $id)->update([
             'email' => $request->email,
-            'name' => $request->name
+            'name' => $request->name,
         ]);
         if ($updateAdmin) {
             if ($request->has('requestFrom')) {
@@ -112,5 +110,4 @@ class AdminController extends Controller
             return redirect(route('admin.profile'))->with('success', 'Password Updated Successfully');
         }
     }
-
 }

@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,13 +14,12 @@
  */
 
 Route::get('/', function () {
-    return redirect(route("login")); //this redirect to login page of teacher
+    return redirect(route("students.login")); //this redirect to login page of teacher
 })->name('welcome');
 
 Auth::routes();
 
 Route::get('/register', 'Auth\RegisterController@register')->name('register')->middleware('auth:admin');
-
 
 /* admin login and dashboard Routes */
 Route::get('/home', 'HomeController@index')->name('home');
@@ -101,6 +102,7 @@ Route::group(['middleware' => 'auth:students', 'prefix' => 'students'], function
         Route::post('/', 'Students\PaymentController@createPayment')->name('students.payment');
         Route::get('/executePayment', 'Students\PaymentController@executePayment')->name('students.executePayment');
     });
+    Route::group(['prefix' => 'feedback'], function () {
+        Route::get('/', 'Students\FeedbackController@index')->name('students.feeback');
+    });
 });
-
-
