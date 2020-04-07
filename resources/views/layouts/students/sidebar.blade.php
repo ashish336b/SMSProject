@@ -14,7 +14,7 @@
                 </li>
                 <li
                     class="{{ Route::is('students.feedback')?'active': '' }}">
-                    <a href="{{ route('students.feeback') }}"><i class="ti-calendar"></i> Send
+                    <a href="{{ route('students.feedback') }}"><i class="ti-calendar"></i> Send
                         FeedBack </a>
                 </li>
                 </li>

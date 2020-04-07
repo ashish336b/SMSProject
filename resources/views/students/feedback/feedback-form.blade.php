@@ -9,7 +9,7 @@
                     <h4>Send Feedback</h4>
                 </div>
                 <div class="col-lg-8 justify-content-center">
-                    <form action="{{ route('admin.notice.add') }}" method="POST">
+                    <form action="{{ route('students.feedback') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label for="to">Email:</label>
@@ -34,9 +34,7 @@
                             <label for="notification">FeedBack</label>
                             <textarea
                                 class="form-control {{ $errors->has('message')?'is-invalid':'' }}"
-                                name="message" id="feedback" rows="9">
-
-                           </textarea>
+                                name="message" id="feedback" rows="9"></textarea>
                             @if($errors->has('message'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('message') }}</strong>
@@ -54,10 +52,3 @@
 </div>
 @endsection
 
-@push('customScript')
-<script>
-   tinymce.init({
-       selector: '#feedback'
-   });
-</script>
-@endpush

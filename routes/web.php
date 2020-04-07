@@ -103,6 +103,7 @@ Route::group(['middleware' => 'auth:students', 'prefix' => 'students'], function
         Route::get('/executePayment', 'Students\PaymentController@executePayment')->name('students.executePayment');
     });
     Route::group(['prefix' => 'feedback'], function () {
-        Route::get('/', 'Students\FeedbackController@index')->name('students.feeback');
+        Route::get('/', 'Students\FeedbackController@index')->name('students.feedback');
+        Route::post('/', 'Students\FeedbackController@store')->name('students.feedback');
     });
 });
