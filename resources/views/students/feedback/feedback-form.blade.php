@@ -4,6 +4,7 @@
 <div class="container">
     <div class="card">
         <div class="card-body">
+            @include('layouts.flashmessage')
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h4>Send Feedback</h4>

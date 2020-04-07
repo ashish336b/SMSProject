@@ -22,6 +22,6 @@ class FeedbackController extends Controller
             "message" => 'required',
         ]);
         $sendMail = Mail::to('test@test.com')->send(new FeedbackMail($request));
-        dd($sendMail);
+        return redirect(route('students.feedback'))->with('success','FeedBack Send Successfully');
     }
 }
