@@ -29,6 +29,6 @@ class FeedbackMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('students.feedback.feedback');
+        return $this->from('ashish336b@gmail.com')->markdown('students.feedback.feedback');
     }
 }

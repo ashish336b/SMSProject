@@ -1,10 +1,12 @@
 @component('mail::message')
-    # {{$data->email}}
-
-    Subject : {{$data->subject}}
-    
-    {!! $data->message !!}
-
-    Thanks,
-    {{ config('app.name') }}
+    <strong style="color: black">From :</strong> {{$data['email']}}
+    <br>
+    <br>
+  <strong style="color:black">Subject : </strong> {{$data['subject']}}
+  <br>
+  <br>
+  <strong style="color:black">Message : </strong> {{$data['message']}}
+  <br>
+  <p style="color:black">Thanks, <span style="color:blue">{{$data['firstName']}} {{$data['lastName']}}</span></p>,
+  
 @endcomponent
