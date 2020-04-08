@@ -87,6 +87,12 @@ class AdminController extends Controller
 
     public function destroy($id)
     {
+        if (!Auth::user()->isSuperAdmin) {
+            return null;
+        }
+        if (Admin::where('id', $id)->first()->isSuperAdmin) {
+            return null;
+        }
         if (Admin::where('id', $id)->delete()) {
             return redirect(route('admin.list'))->with('success', 'Admin Deleted Successfully');
         }

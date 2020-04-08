@@ -29,15 +29,19 @@
                                 <a href="{{ route('admin.show',['id'=>$data->id]) }}"
                                     class="btn btn-primary btn-sm mr-1"><span class="iconify" data-icon="fa-solid:edit"
                                         data-inline="false"></span></a>
-                                <form
-                                    action="{{ route('admin.delete',['id'=>$data->id]) }}"
-                                    method="post">
-                                    @csrf
-                                    <input name="_method" type="hidden" value="DELETE">
-                                    <button onclick=" return deleteConfirm()" type="submit" class="btn btn-danger btn-sm">
-                                        <span class="iconify" data-icon="mdi:delete-alert" data-inline="false"></span>
-                                    </button>
-                                </form>
+                                @if(Auth::user()->isSuperAdmin && !$data->isSuperAdmin)
+                                    <form
+                                        action="{{ route('admin.delete',['id'=>$data->id]) }}"
+                                        method="post">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <button onclick=" return deleteConfirm()" type="submit"
+                                            class="btn btn-danger btn-sm">
+                                            <span class="iconify" data-icon="mdi:delete-alert"
+                                                data-inline="false"></span>
+                                        </button>
+                                    </form>
+                                @endif
                             </div>
                         </td>
                     </tr>

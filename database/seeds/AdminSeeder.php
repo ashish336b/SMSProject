@@ -17,12 +17,14 @@ class AdminSeeder extends Seeder
                 'name' => 'Shrijan Bir Malakar',
                 'email' => 'shrijan@gmail.com',
                 'job_title' => 'admin',
+                'isSuperAdmin'=> "1",
                 'password' => Hash::make($password)
             ],
             [
                 'name' => 'Ashish Bhandari',
                 'email' => 'ashish336b@gmail.com',
                 'job_title' => 'admin',
+                'isSuperAdmin'=> "0",
                 'password' => Hash::make($password)
             ],
         ]);

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Model\SendNotice;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class NoticeController extends Controller
 {
@@ -30,7 +30,7 @@ class NoticeController extends Controller
         $updateNotice = SendNotice::where("id", $id)->update([
             "to" => $request->to,
             'subject' => $request->subject,
-            'message' => $request->message
+            'message' => $request->message,
         ]);
         if ($updateNotice) {
             return redirect(route('admin.notice'))->with("success", "Notice Updated Successfully");

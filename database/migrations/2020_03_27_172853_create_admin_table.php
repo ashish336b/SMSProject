@@ -19,6 +19,7 @@ class CreateAdminTable extends Migration
             $table->string('email')->unique();
             $table->string('job_title');
             $table->string('password');
+            $table->enum('isSuperAdmin',["0" , "1"]);
             $table->rememberToken();
             $table->timestamps();
         });
