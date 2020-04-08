@@ -42,7 +42,6 @@
                                     class="btn btn-primary btn-sm mr-1">
                                     <span class="iconify" data-icon="fa-solid:edit" data-inline="false"></span>
                                 </a>
-
                                 <form class=""
                                     action="{{ route('admin.students.delete',['id'=>$student->id]) }}"
                                     method="post">

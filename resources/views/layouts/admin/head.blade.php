@@ -28,5 +28,6 @@
     <link href="{{ url('/') }}/assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <script src="https://code.iconify.design/1/1.0.5/iconify.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
     @stack('customStyle')
 </head>
