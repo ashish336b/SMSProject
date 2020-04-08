@@ -25,10 +25,14 @@
                         <td>{{ $data->name }}</td>
                         <td>{{ $data->department->name }}</td>
                         <td>
-                            <a href="{{ route('admin.classroom.show',['id'=>$data->id]) }}"
-                                class="btn btn-primary btn-sm"><span class="iconify" data-icon="fa-solid:edit"
-                                    data-inline="false"></span></a>
-                            <form
+                            <div class="row">
+                                <div class="col-lg-1">
+                                    <a href="{{ route('admin.classroom.show',['id'=>$data->id]) }}"
+                                        class="btn btn-primary btn-sm"><span class="iconify" data-icon="fa-solid:edit"
+                                            data-inline="false"></span></a>
+                                </div>
+                                <div class="col-lg-1">
+                                    <form
                                 action="{{ route('admin.classroom.delete',['id'=>$data->id]) }}"
                                 method="post">
                                 @csrf
@@ -37,6 +41,8 @@
                                     <span class="iconify" data-icon="mdi:delete-alert" data-inline="false"></span>
                                 </button>
                             </form>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
