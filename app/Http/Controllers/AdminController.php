@@ -72,6 +72,9 @@ class AdminController extends Controller
 
     public function edit($id, Request $request)
     {
+        if (!Auth::user()->isSuperAdmin && Admin::where('id', $id)->first()->isSuperAdmin) {
+            return redirect(route('admin.profile'))->with('danger', 'Sorry you cannot edit SuperAdmin Data');
+        }
         $updateAdmin = Admin::where('id', $id)->update([
             'email' => $request->email,
             'name' => $request->name,
@@ -87,10 +90,7 @@ class AdminController extends Controller
 
     public function destroy($id)
     {
-        if (!Auth::user()->isSuperAdmin) {
-            return null;
-        }
-        if (Admin::where('id', $id)->first()->isSuperAdmin) {
+        if (!Auth::user()->isSuperAdmin && Admin::where('id', $id)->first()->isSuperAdmin) {
             return null;
         }
         if (Admin::where('id', $id)->delete()) {

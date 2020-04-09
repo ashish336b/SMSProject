@@ -26,7 +26,7 @@ class StudentSeeder extends Seeder
             'gender'=>'male',
             'classroom_id'=> '1'
         ]);
-        $gender = ['Male', 'Female'];
+        $gender = ['male', 'female'];
         for($i=1;$i<55;$i++)
         {
             DB::table("students")->insert([

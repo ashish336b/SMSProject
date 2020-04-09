@@ -26,9 +26,11 @@
                         <td>{{ $data->email }}</td>
                         <td>
                             <div class="row justify-content-end">
-                                <a href="{{ route('admin.show',['id'=>$data->id]) }}"
-                                    class="btn btn-primary btn-sm mr-1"><span class="iconify" data-icon="fa-solid:edit"
-                                        data-inline="false"></span></a>
+                                @if(Auth::user()->id == $data->id || !$data->isSuperAdmin)
+                                    <a href="{{ route('admin.show',['id'=>$data->id]) }}"
+                                        class="btn btn-primary btn-sm mr-1"><span class="iconify"
+                                            data-icon="fa-solid:edit" data-inline="false"></span></a>
+                                @endif
                                 @if(Auth::user()->isSuperAdmin && !$data->isSuperAdmin)
                                     <form
                                         action="{{ route('admin.delete',['id'=>$data->id]) }}"
