@@ -2,6 +2,12 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/guard', function () {
+    if(Auth::guard('admin')->check())
+    {
+        return "admin";
+    }
+});
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,9 +83,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function () 
         Route::put('/show/{id}', 'Admin\ClassroomController@edit')->name('admin.classroom.update');
         Route::delete('/delete/{id}', 'Admin\ClassroomController@destroy')->name('admin.classroom.delete');
     });
-    Route::group(['prefix' => 'message'], function () {
-        Route::get('/', 'Admin\MessageController@index')->name('admin.message');
-    });
+    // Route::group(['prefix' => 'message'], function () {
+    //     Route::get('/', 'Admin\MessageController@index')->name('admin.message');
+    // });
     Route::group(['prefix' => 'notice'], function () {
         Route::get('/', 'Admin\NoticeController@index')->name('admin.notice');
         Route::get('/add', 'Admin\NoticeController@create')->name('admin.notice.add');
