@@ -11,6 +11,6 @@ class Payment extends Model
 
     public function students()
     {
-        return $this->hasMany('App\Students');
+        return $this->hasOne('App\Students' , 'id');
     }
 }

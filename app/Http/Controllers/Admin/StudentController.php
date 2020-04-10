@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Classroom;
-use App\Students;
-use App\Teachers;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Classroom;
+use App\Model\Payment;
+use App\Students;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
@@ -14,12 +14,12 @@ class StudentController extends Controller
     public function index()
     {
         $studentData = Students::all();
-        return view('admin.student.index',['studentData'=>$studentData]);
+        return view('admin.student.index', ['studentData' => $studentData]);
     }
     public function create()
     {
         $classroomData = Classroom::all('id', 'name');
-        return view('admin.student.add',['classroomData'=> $classroomData]);
+        return view('admin.student.add', ['classroomData' => $classroomData]);
     }
 
     public function store(Request $request)
@@ -32,7 +32,7 @@ class StudentController extends Controller
             'password' => ['required', 'string', 'min:6', 'confirmed'],
             'address' => ['required', 'string'],
             'phoneNumber' => ['required', 'numeric'],
-            'gender'=> ['required'],
+            'gender' => ['required'],
             'classroom_id' => ['required', 'numeric'],
         ]);
 
@@ -45,8 +45,8 @@ class StudentController extends Controller
             'address' => $request->address,
             'phoneNumber' => $request->phoneNumber,
             'classroom_id' => $request->classroom_id,
-            'isFeePaid'=> 0,
-            'gender'=> $request->gender
+            'isFeePaid' => 0,
+            'gender' => $request->gender,
         ]);
         if ($addNewStudent) {
             return redirect(route('admin.students.add'))->with('success', 'Student Added Successfully');
@@ -54,16 +54,16 @@ class StudentController extends Controller
         return null;
     }
 
-    public function show(Request $request , $id)
+    public function show(Request $request, $id)
     {
         $classroomData = Classroom::all('id', 'name');
-        $studentData = Students::where('id',$id)->first();
-       return view('admin.student.edit',['classroomData'=> $classroomData,'studentData'=>$studentData]);
+        $studentData = Students::where('id', $id)->first();
+        return view('admin.student.edit', ['classroomData' => $classroomData, 'studentData' => $studentData]);
     }
 
-    public function edit(Request $request , $id)
+    public function edit(Request $request, $id)
     {
-        $editStudent = Students::where('id',$id)->update([
+        $editStudent = Students::where('id', $id)->update([
             'rollNumber' => $request->rollNumber,
             'firstName' => $request->firstName,
             'lastName' => $request->lastName,
@@ -71,8 +71,8 @@ class StudentController extends Controller
             'address' => $request->address,
             'phoneNumber' => $request->phoneNumber,
             'classroom_id' => $request->classroom_id,
-            'isFeePaid'=> 0,
-            'gender'=> $request->gender
+            'isFeePaid' => 0,
+            'gender' => $request->gender,
         ]);
         if ($editStudent) {
             return redirect(route('admin.students'))->with('success', 'Student Edited Successfully');
@@ -82,11 +82,24 @@ class StudentController extends Controller
 
     public function destroy($id)
     {
-        if(Students::where('id', $id)->delete())
-        {
+        if (Students::where('id', $id)->delete()) {
             return redirect(route('admin.students'))->with('danger', "Deleted Successfully");
         }
         return null;
+    }
+
+    public function feePaymentList()
+    {
+        /* $distinctStudentName = [];
+        $data = Payment::select('students_id')->groupBy('students_id')->get();
+        foreach ($data as $key => $item) {
+            $studentData = Students::where('id', $item->students_id)->first();
+            $distinctStudentName[] = $studentData->id;
+        }
+        dump($distinctStudentName); */
+        $feePaymentList = Payment::all();
+        // dd($feePaymentList[2]->students);
+        return view('admin.student.listFeePayment', ['feePaymentList' => $feePaymentList]);
     }
 
 }

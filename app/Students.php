@@ -44,9 +44,9 @@ class Students extends Authenticatable
         return $this->belongsTo("App\Model\Classroom");
     }
 
-    public function payment()
+    public function payments()
     {
-        return $this->hasMany('App\Model\Payment');
+        return $this->hasOne('App\Model\Payment', 'id');
     }
 
 }
