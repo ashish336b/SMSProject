@@ -27,6 +27,20 @@ class AdminSeeder extends Seeder
                 'isSuperAdmin'=> "0",
                 'password' => Hash::make($password)
             ],
+            [
+                'name' => 'Admin2',
+                'email' => 'admin2@gmail.com',
+                'job_title' => 'admin',
+                'isSuperAdmin'=> "0",
+                'password' => Hash::make($password)
+            ],
+            [
+                'name' => 'Admin3',
+                'email' => 'admin3@gmail.com',
+                'job_title' => 'admin',
+                'isSuperAdmin'=> "0",
+                'password' => Hash::make($password)
+            ],
         ]);
     }
 }
