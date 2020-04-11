@@ -28,8 +28,13 @@ class RedirectIfAuthenticated
                     return redirect()->route('students.dashboard');
                 }
                 break;
+            default:
+                if (Auth::guard($guard)->check()) {
+                    return redirect()->route('teachers');
+                }
+                break;
 
-            //for teacher default route is defined in loginController in protected $redirected to
+                //for teacher default route is defined in loginController in protected $redirected to
         }
 
         return $next($request);

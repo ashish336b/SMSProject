@@ -108,6 +108,7 @@ Route::group(['middleware' => 'auth:students', 'prefix' => 'students'], function
 });
 
 /* Teacher Dashbaord Routes */
-Route::group(['middleware' => ['auth:web'], 'prefix' => 'teachers'], function () {
+Route::group(['middleware' => ['auth'], 'prefix' => 'teachers'], function () {
     Route::get('/', 'Teachers\TeacherController@index')->name('teachers');
+    Route::get('/notice', 'Teachers\TeacherController@showNotice')->name('teachers.notice');
 });
