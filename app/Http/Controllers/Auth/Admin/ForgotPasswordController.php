@@ -28,7 +28,7 @@ class ForgotPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:students');
+        $this->middleware('guest:admin');
     }
 
     public function showLinkRequestForm()
@@ -38,7 +38,7 @@ class ForgotPasswordController extends Controller
 
     public function broker()
     {
-        return Password::broker('students');
+        return Password::broker('admins');
     }
 
 }

@@ -19,13 +19,3 @@ if ($uri !== '/' && file_exists(__DIR__.'/public'.$uri)) {
 }
 
 require_once __DIR__.'/public/index.php';
-/* 
-
-MAIL_DRIVER=smtp
-MAIL_HOST=smtp.gmail.com
-MAIL_PORT=587
-MAIL_USERNAME=ashish336b@gmail.com
-MAIL_PASSWORD=xbapaqjzlhsaxjag
-MAIL_ENCRYPTION=tls
-
-*/

@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class StudentSeeder extends Seeder
 {
@@ -16,9 +18,9 @@ class StudentSeeder extends Seeder
         $password = "11111111";
         DB::table('students')->insert([
             'rollNumber'=> '1',
-            'firstName'=> 'Student',
-            'lastName'=> 'Study',
-            'email'=> 'student@gmail.com',
+            'firstName'=> 'Ashish',
+            'lastName'=> 'Bhandari',
+            'email'=> 'ashish336b@gmail.com',
             'password'=> Hash::make($password),
             'phoneNumber'=> '987654321',
             'address'=> 'Kathmandu',
@@ -27,7 +29,7 @@ class StudentSeeder extends Seeder
             'classroom_id'=> '1'
         ]);
         $gender = ['male', 'female'];
-        for($i=1;$i<55;$i++)
+        for($i=1;$i<20;$i++)
         {
             DB::table("students")->insert([
                 [

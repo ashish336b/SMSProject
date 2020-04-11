@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\DB;
+
 class SendNoticeSeeder extends Seeder
 {
     /**
@@ -13,11 +15,11 @@ class SendNoticeSeeder extends Seeder
     {
         $faker = Faker::create('App\Model\SendNotice');
         $to = array('Student', 'Teacher', 'Both');
-        for ($i = 1; $i < 18; $i++) {
+        for ($i = 1; $i < 5; $i++) {
             DB::table('sendnotice')->insert([
                 'to' => $to[$faker->numberBetween(0, 2)],
                 'subject'=> $faker->sentence,
-                'message' => $faker->paragraph(10),
+                'message' => $faker->paragraph(2),
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
