@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/teachers';
 
     /**
      * Create a new controller instance.
@@ -43,13 +43,14 @@ class LoginController extends Controller
     {
         if (Auth::guard('admin')->check()) {
             $redirectUrl = "admin/login";
-        }else if(Auth::guard('students')->check())
-        {
+            Auth::guard('admin')->logout();
+        } else if (Auth::guard('students')->check()) {
             $redirectUrl = "students/login";
-        }else{
+            Auth::guard('students')->logout();
+        } else {
             $redirectUrl = "/login";
+            $this->guard()->logout();
         }
-        $this->guard()->logout();
 
         $request->session()->invalidate();
         return $this->loggedOut($request) ?: redirect($redirectUrl);
