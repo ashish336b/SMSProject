@@ -40,7 +40,11 @@ class StudentsController extends Controller
     {
         $request->validate([
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'previousPassword' => ['required'],
         ]);
+        if (!Hash::check($request->previousPassword, Auth::user()->password)) {
+            return redirect(route('students.profile'))->with('danger', 'Your Previous Password Does not Match');
+        }
         $updatePassword = Students::where('id', Auth::user()->id)->update([
             'password' => Hash::make($request->password),
         ]);

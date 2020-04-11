@@ -122,13 +122,29 @@
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-group row">
+                                <label for="previousPassword"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Previous Password') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="previousPassword" type="password"
+                                        class="form-control{{ $errors->has('previousPassword') ? ' is-invalid' : '' }}"
+                                        name="previousPassword">
+
+                                    @if($errors->has('previousPassword'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('previousPassword') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="password"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
                                         class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                        name="password" required>
+                                        name="password">
 
                                     @if($errors->has('password'))
                                         <span class="invalid-feedback" role="alert">
@@ -144,7 +160,7 @@
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" required>
+                                        name="password_confirmation">
                                 </div>
                             </div>
 
