@@ -1,7 +1,7 @@
 <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
     <div class="nano">
         <div class="nano-content">
-            <div class="logo"><a href="{{ url('/teachers') }}"><span>Teacher Dashboard</span></a>
+            <div class="logo"><a href="{{ url('/teachers/notice') }}"><span>Teacher Dashboard</span></a>
             </div>
             <ul>
                 <li class="label">Notice</li>

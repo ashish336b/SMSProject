@@ -20,7 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/register', 'Auth\RegisterController@register')->name('register')->middleware('auth:admin');
-
+Route::get('/listRoute','HomeController@index')->name('routeList');
 /* admin login and dashboard Routes */
 Route::prefix('admin')->group(function () {
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
@@ -111,4 +111,5 @@ Route::group(['middleware' => 'auth:students', 'prefix' => 'students'], function
 Route::group(['middleware' => ['auth'], 'prefix' => 'teachers'], function () {
     Route::get('/', 'Teachers\TeacherController@index')->name('teachers');
     Route::get('/notice', 'Teachers\TeacherController@showNotice')->name('teachers.notice');
+    Route::get('/profile', 'Teachers\TeacherController@showProfile')->name('teachers.profile');
 });
