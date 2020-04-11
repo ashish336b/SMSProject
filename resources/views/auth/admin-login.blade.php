@@ -75,6 +75,7 @@
                                             href="{{ route('admin.password.request') }}">
                                             {{ __('Forgot Your Password?') }}
                                         </a>
+                                        <a href="/" class="btn btn-link">Home Page</a>
                                     @endif
                                 </div>
                             </div>

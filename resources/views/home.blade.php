@@ -18,7 +18,7 @@
             margin: 0;
             font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
             font-size: 17px;
-            color: #926239;
+            color: #DF2029;
             line-height: 1.6;
         }
 
@@ -47,15 +47,16 @@
         #showcase .button {
             font-size: 18px;
             text-decoration: none;
-            color: #926239;
-            border: #926239 1px solid;
+            color: white;
+            background: #926239;
+            border: #34465D 1px solid;
             padding: 10px 20px;
             border-radius: 10px;
             margin-top: 20px;
         }
 
         #showcase .button:hover {
-            background: #926239;
+            background: #1AB7EA;
             color: #fff;
         }
 

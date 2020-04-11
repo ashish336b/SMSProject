@@ -77,6 +77,7 @@
                                             {{ __('Forgot Your Password?') }}
                                         </a>
                                     @endif
+                                    <a href="/" class="btn btn-link">Home Page</a>
                                 </div>
                             </div>
                         </div>
