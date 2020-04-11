@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Student</title>
+<title>{{Auth::user()->firstName}} {{Auth::user()->lastName}}</title>
     @include('layouts.students.head')
 </head>
 <body>

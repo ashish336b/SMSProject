@@ -1,6 +1,6 @@
-@extends('layouts.teachers.index')
+@extends('layouts.students.index')
 
-@section('teacherContent')
+@section('studentContent')
 <div class="container">
     <div class="container">
         <div class="row justify-content-center">
@@ -12,7 +12,7 @@
                     </div>
                     <div class="card-body">
                         <form method="post"
-                            action="{{ route('teachers.updateProfile', $teacherData->id) }}">
+                            action="{{ route('students.updateProfile', $studentData->id) }}">
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
                             <input type="hidden" name="requestFrom"
@@ -24,7 +24,7 @@
                                 <div class="col-md-6">
                                     <input id="firstName" type="text"
                                         class="form-control{{ $errors->has('firstName') ? ' is-invalid' : '' }}"
-                                        name="firstName" value="{{ $teacherData->firstName }}" autofocus>
+                                        name="firstName" value="{{ $studentData->firstName }}" autofocus>
 
                                     @if($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
@@ -41,7 +41,7 @@
                                 <div class="col-md-6">
                                     <input id="lastName" type="text"
                                         class="form-control{{ $errors->has('lastName') ? ' is-invalid' : '' }}"
-                                        name="lastName" value="{{ $teacherData->lastName }}" autofocus>
+                                        name="lastName" value="{{ $studentData->lastName }}" autofocus>
 
                                     @if($errors->has('lastName'))
                                         <span class="invalid-feedback" role="alert">
@@ -58,7 +58,7 @@
                                 <div class="col-md-6">
                                     <input id="email" type="email"
                                         class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                        name="email" value="{{ $teacherData->email }}" autofocus>
+                                        name="email" value="{{ $studentData->email }}" autofocus>
                                     @if($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('email') }}</strong>
@@ -74,7 +74,7 @@
                                 <div class="col-md-6">
                                     <input id="address" type="text"
                                         class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}"
-                                        name="address" value="{{ $teacherData->address }}" autofocus>
+                                        name="address" value="{{ $studentData->address }}" autofocus>
 
                                     @if($errors->has('address'))
                                         <span class="invalid-feedback" role="alert">
@@ -91,7 +91,7 @@
                                 <div class="col-md-6">
                                     <input id="phoneNumber" type="text"
                                         class="form-control{{ $errors->has('phoneNumber') ? ' is-invalid' : '' }}"
-                                        name="phoneNumber" value="{{ $teacherData->phoneNumber }}" autofocus>
+                                        name="phoneNumber" value="{{ $studentData->phoneNumber }}" autofocus>
 
                                     @if($errors->has('phoneNumber'))
                                         <span class="invalid-feedback" role="alert">
@@ -118,7 +118,7 @@
                         <h1>{{ __('Change Password') }}</h1>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('teachers.changePassword') }}">
+                        <form method="post" action="{{ route('students.updatePassword') }}">
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-group row">

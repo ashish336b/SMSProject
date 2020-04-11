@@ -11,20 +11,21 @@
             <div class="col-lg-11 col-xs-6">
                 <div class="float-right">
                     <ul>
-                        <li class="header-icon dib"><span class="user-avatar">{{Auth::user()->firstName}} <i
-                                    class="ti-angle-down f-s-10"></i></span>
+                        <li class="header-icon dib"><span class="user-avatar">{{ Auth::user()->firstName }}
+                                {{ Auth::user()->lastName }} <i class="ti-angle-down f-s-10"></i></span>
                             <div class="drop-down dropdown-profile">
                                 <div class="dropdown-content-body">
                                     <ul>
-                                        <li><a href="{{route('students.profile')}}"><i class="ti-user"></i> <span>Profile</span></a></li>
-                                        <li><a href="#"
-                                               onclick="event.preventDefault();
+                                        <li><a href="{{ route('students.profile') }}"><i
+                                                    class="ti-user"></i> <span>Profile</span></a></li>
+                                        <li><a href="#" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
-                                                <i class="ti-power-off"></i> <span>{{ __('Logout') }}</span>
+                                                <i class="ti-power-off"></i>
+                                                <span>{{ __('Logout') }}</span>
                                             </a>
 
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                  style="display: none;">
+                                            <form id="logout-form" action="{{ route('logout') }}"
+                                                method="POST" style="display: none;">
                                                 @csrf
                                             </form>
                                         </li>

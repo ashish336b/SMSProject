@@ -20,14 +20,27 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/register', 'Auth\RegisterController@register')->name('register')->middleware('auth:admin');
-Route::get('/listRoute','HomeController@index')->name('routeList');
-/* admin login and dashboard Routes */
+// Route::get('/listRoute','HomeController@index')->name('routeList');
+
+/**
+ *
+ *
+ *                                      Admin  Login Routes
+ *
+ *
+ */
 Route::prefix('admin')->group(function () {
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
 });
 
-/*Routes of admin*/
+/**
+ *
+ *
+ *                                      Routes of admin Dashboard
+ *
+ *
+ */
 Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
     Route::get('/list', 'AdminController@list')->name('admin.list');
@@ -86,15 +99,29 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function () 
         Route::delete('/delete/{id}', 'Admin\NoticeController@destroy')->name('admin.notice.delete');
     });
 });
-/* Student Login routes */
+/**
+ *
+ *
+ *                              Student Login Routes
+ *
+ *
+ */
 Route::prefix('students')->group(function () {
     Route::get('/login', 'Auth\StudentsLoginController@showLoginForm')->name('students.login');
     Route::post('/login', 'Auth\StudentsLoginController@login')->name('students.login.submit');
 });
-/* Student routes for Dashboard */
+/**
+ *
+ *
+ *                               Students Routes For Dashboard
+ *
+ *
+ */
 Route::group(['middleware' => 'auth:students', 'prefix' => 'students'], function () {
     Route::get('/', 'Students\StudentsController@index')->name('students.dashboard');
-    Route::get('/profile', 'Students\StudentsController@index')->name('students.profile');
+    Route::get('/profile', 'Students\StudentsController@showProfile')->name('students.profile');
+    Route::put('/profile', 'Students\StudentsController@updateProfile')->name('students.updateProfile');
+    Route::put('/profile/changePassword', 'Students\StudentsController@updatePassword')->name('students.updatePassword');
     Route::get('/notice', 'Students\StudentsController@notice')->name('students.notice');
     Route::group(['prefix' => 'payment'], function () {
         Route::get('/', 'Students\PaymentController@index')->name('students.payment');
@@ -107,9 +134,17 @@ Route::group(['middleware' => 'auth:students', 'prefix' => 'students'], function
     });
 });
 
-/* Teacher Dashbaord Routes */
+/**
+ *
+ *
+ *                               Routes for Teacher Dashbaord
+ *
+ *
+ */
 Route::group(['middleware' => ['auth'], 'prefix' => 'teachers'], function () {
     Route::get('/', 'Teachers\TeacherController@index')->name('teachers');
     Route::get('/notice', 'Teachers\TeacherController@showNotice')->name('teachers.notice');
     Route::get('/profile', 'Teachers\TeacherController@showProfile')->name('teachers.profile');
+    Route::put('/profile', 'Teachers\TeacherController@updateProfile')->name('teachers.updateProfile');
+    Route::put('/profile/changePassword', 'Teachers\TeacherController@changePassword')->name('teachers.changePassword');
 });
