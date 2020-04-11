@@ -122,6 +122,22 @@
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-group row">
+                                <label for="previousPassword"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Previous Password') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="previousPassword" type="password"
+                                        class="form-control{{ $errors->has('previousPassword') ? ' is-invalid' : '' }}"
+                                        name="previousPassword">
+
+                                    @if($errors->has('previousPassword'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('previousPassword') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="password"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 

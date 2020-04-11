@@ -106,9 +106,14 @@ class AdminController extends Controller
 
     public function changePassword(Request $request)
     {
+
         $request->validate([
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'previousPassword'=>['required']
         ]);
+        if (!Hash::check($request->previousPassword, Auth::user()->password)) {
+            return redirect(route('admin.profile'))->with('danger', 'Your Previous Password Does not Match');
+        }
         $updatePassword = Admin::where('id', Auth::user()->id)->update([
             'password' => Hash::make($request->password),
         ]);
