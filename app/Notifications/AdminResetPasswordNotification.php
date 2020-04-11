@@ -10,6 +10,7 @@ class AdminResetPasswordNotification extends Notification
 {
     use Queueable;
     public $token;
+    public $routes;
     /**
      * Create a new notification instance.
      *
