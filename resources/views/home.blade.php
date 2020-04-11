@@ -68,11 +68,11 @@
         <p>This is school management System. You can login as : </p>
         <div class="row">
             <div class="col">
-            <a href="{{route('students.login')}}" class="button">Student</a>
+                <a href="{{ route('students.login') }}" class="button">Student</a>
 
             </div>
             <div class="col">
-                <a href="{{route('login')}}" class="button">Teacher</a>
+                <a href="{{ route('login') }}" class="button">Teacher</a>
             </div>
         </div>
     </header>
