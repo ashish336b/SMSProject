@@ -33,7 +33,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
     Route::get('/admin-password/reset', 'Auth\Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
-    Route::post('/password/email','Auth\Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
+    Route::post('/password/email', 'Auth\Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
     Route::get('/password/reset/{token}', 'Auth\Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
     Route::post('/password/reset', 'Auth\Admin\ResetPasswordController@reset')->name('admin.password.update');
 });
@@ -113,6 +113,10 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function () 
 Route::prefix('students')->group(function () {
     Route::get('/login', 'Auth\StudentsLoginController@showLoginForm')->name('students.login');
     Route::post('/login', 'Auth\StudentsLoginController@login')->name('students.login.submit');
+    Route::get('/students-password/reset', 'Auth\Students\ForgotPasswordController@showLinkRequestForm')->name('students.password.request');
+    Route::post('/password/email', 'Auth\Students\ForgotPasswordController@sendResetLinkEmail')->name('students.password.email');
+    Route::get('/password/reset/{token}', 'Auth\Students\ResetPasswordController@showResetForm')->name('students.password.reset');
+    Route::post('/password/reset', 'Auth\Students\ResetPasswordController@reset')->name('students.password.update');
 });
 /**
  *

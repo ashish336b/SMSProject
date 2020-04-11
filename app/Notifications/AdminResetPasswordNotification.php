@@ -16,9 +16,10 @@ class AdminResetPasswordNotification extends Notification
      *
      * @return void
      */
-    public function __construct($token)
+    public function __construct($token, $routes)
     {
         $this->token = $token;
+        $this->routes = $routes;
     }
 
     /**
@@ -41,8 +42,9 @@ class AdminResetPasswordNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->subject('Password Reset Link For '.url('/'))
             ->line('You are receiveing this email because we received a password reset request for your account')
-            ->action('Reset Password', route('admin.password.reset', $this->token))
+            ->action('Reset Password', route($this->routes, $this->token))
             ->line('Thank you for using our application!');
     }
 
