@@ -15,7 +15,7 @@
                 </li>
                 <li
                     class="{{ Route::is('admin.students')?'active': '' }}">
-                    <a href="{{ route('admin.students') }}"><i class="ti-user"></i> Student </a>
+                    <a href="{{ route('admin.students') }}"><i class="ti-anchor"></i> Student </a>
                 </li>
                 <li class="label">Department and classes</li>
                 <li
@@ -30,11 +30,11 @@
                 <li
                     class="{{ Route::is('admin.students.feePaymentList')? 'active': '' }}">
                     <a href="{{ route('admin.students.feePaymentList') }}"><i
-                            class="ti-angle-double-right"></i>Fee Information</a>
+                            class="ti-money"></i>Fee Information</a>
                 </li>
                 <li
                     class="{{ Route::is('admin.notice')?'active': '' }}">
-                    <a href="{{ route('admin.notice') }}"><i class="ti-dashboard"></i>Notice</a></li>
+                    <a href="{{ route('admin.notice') }}"><i class="ti-announcement"></i>Notice</a></li>
                 <li class="label">Admin</li>
                 <li
                     class="{{ Route::is('admin.list')?'active': '' }}">

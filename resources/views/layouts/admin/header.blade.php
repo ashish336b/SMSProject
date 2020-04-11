@@ -11,7 +11,11 @@
             <div class="col-lg-11 col-xs-6">
                 <div class="float-right">
                     <ul>
-                        <li class="header-icon dib"><i class="ti-bell"></i>
+                        <li class="header-icon dib"><i class="ti-bell font-weight-bold">
+                                <span class="badge text-danger">{{auth()->user()->unreadNotifications()->where('notifiable_id', auth()->user()->id)->count()
+                        }}</span>
+                                <span class="sr-only">un</span>
+                            </i>
                             <div class="drop-down">
                                 <div class="dropdown-content-heading">
                                     <span class="text-left">Recent Notifications</span>
@@ -24,25 +28,27 @@
                                         @if(count($unreadNotification))
                                             @foreach($unreadNotification as $notification)
                                                 @isset($notification->data['payment'])
-                                                    <li>
-                                                        <a href="#">
-                                                            <div class="notification-content">
-                                                                <small
-                                                                    class="notification-timestamp pull-right">{{ $notification->created_at->diffForHumans() }}
-                                                                </small>
-                                                                <div class="notification-heading">
-                                                                    {{ $notification->data["message"] }}
-                                                                </div>
-                                                                <div class="notification-text">{{$notification->data["subMessage"]}}</div>
+                                                <li>
+                                                    <a href="#">
+                                                        <div class="notification-content">
+                                                            <small
+                                                                class="notification-timestamp pull-right">{{ $notification->created_at->diffForHumans() }}
+                                                            </small>
+                                                            <div class="notification-heading">
+                                                                {{ $notification->data["message"] }}
                                                             </div>
-                                                        </a>
-                                                    </li>
-                                                @endisset
-                                            @endforeach
-                                        @else
-                                            <li class="text-center">
-                                                <p>No New Notification</p>
-                                            </li>
+                                                            <div class="notification-text">
+                                                                {{ $notification->data["subMessage"] }}
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            @endisset
+                                        @endforeach
+                                    @else
+                                        <li class="text-center">
+                                            <p>No New Notification</p>
+                                        </li>
                                         @endif
                                     </ul>
                                 </div>
@@ -76,3 +82,20 @@
         </div>
     </div>
 </div>
+
+<style>
+    .badge {
+        position: absolute;
+        top: 0px;
+        font-weight: 800;
+        padding: 0;
+    }
+    span.badge{
+        font-size: 1.5rem;
+    }
+
+    .ti-bell {
+        font-size: 1.5rem;
+    }
+
+</style>

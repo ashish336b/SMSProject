@@ -15,7 +15,7 @@ class SendNoticeSeeder extends Seeder
     {
         $faker = Faker::create('App\Model\SendNotice');
         $to = array('Student', 'Teacher', 'Both');
-        for ($i = 1; $i < 5; $i++) {
+        for ($i = 1; $i < 9; $i++) {
             DB::table('sendnotice')->insert([
                 'to' => $to[$faker->numberBetween(0, 2)],
                 'subject'=> $faker->sentence,
