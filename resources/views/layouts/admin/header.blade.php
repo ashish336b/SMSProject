@@ -10,10 +10,13 @@
             </div>
             <div class="col-lg-11 col-xs-6">
                 <div class="float-right">
+                    @php
+                        $countNotification = auth()->user()->unreadNotifications()->where('notifiable_id',auth()->user()->id)->count();
+                    @endphp
                     <ul>
                         <li class="header-icon dib"><i class="ti-bell font-weight-bold">
-                                <span class="badge text-danger">{{auth()->user()->unreadNotifications()->where('notifiable_id', auth()->user()->id)->count()
-                        }}</span>
+                                <span
+                                    class="badge text-danger">{{ $countNotification ? $countNotification : ''  }}</span>
                                 <span class="sr-only">un</span>
                             </i>
                             <div class="drop-down">
@@ -90,7 +93,8 @@
         font-weight: 800;
         padding: 0;
     }
-    span.badge{
+
+    span.badge {
         font-size: 1.5rem;
     }
 
