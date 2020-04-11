@@ -10,17 +10,18 @@ use Illuminate\Notifications\Messages\MailMessage;
 class SchoolFeePaid extends Notification
 {
     use Queueable;
-    public $invoice, $message;
+    public $invoice, $message , $subMessage;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($invoice = '', $message = '')
+    public function __construct($invoice = '', $message = '' , $subMessage = '')
     {
         $this->invoice = $invoice;
         $this->message = $message;
+        $this->subMessage = $subMessage;
     }
 
     /**
@@ -58,6 +59,7 @@ class SchoolFeePaid extends Notification
     {
         return [
             "message" => $this->message,
+            "subMessage"=> $this->subMessage,
             "payment" => $this->invoice
         ];
     }

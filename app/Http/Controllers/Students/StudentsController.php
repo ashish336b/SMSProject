@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Students;
 
+use App\Admin;
 use App\Http\Controllers\Controller;
 use App\Model\SendNotice;
+use App\Notifications\SchoolFeePaid;
 use App\Students;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 
 class StudentsController extends Controller
 {
@@ -32,6 +35,8 @@ class StudentsController extends Controller
             'phoneNumber' => $request->phoneNumber,
         ]);
         if ($updateTeacherProfile) {
+            $notificationMessage = Auth::user()->firstName . " " . Auth::user()->lastName . " has updated Profile";
+            Notification::send(Admin::all(), new SchoolFeePaid('', $notificationMessage, 'Student Profile'));
             return redirect(route('students.profile'))->with('success', 'Your Profile Updated Successfully');
         }
     }

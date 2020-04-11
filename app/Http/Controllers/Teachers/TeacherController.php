@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Teachers;
 
+use App\Admin;
 use App\Http\Controllers\Controller;
 use App\Model\SendNotice;
+use App\Notifications\SchoolFeePaid;
 use App\Teachers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 
 class TeacherController extends Controller
 {
@@ -37,6 +40,8 @@ class TeacherController extends Controller
             'phoneNumber' => $request->phoneNumber,
         ]);
         if ($updateTeacherProfile) {
+            $notificationMessage = Auth::user()->firstName . " " . Auth::user()->lastName . " has updated Profile";
+            Notification::send(Admin::all(), new SchoolFeePaid('', $notificationMessage, 'Teacher Profile'));
             return redirect(route('teachers.profile'))->with('success', 'Your Profile Updated Successfully');
         }
     }
@@ -45,7 +50,7 @@ class TeacherController extends Controller
     {
         $request->validate([
             'password' => ['required', 'string', 'min:6', 'confirmed'],
-            'previousPassword'=>['required']
+            'previousPassword' => ['required'],
         ]);
         if (!Hash::check($request->previousPassword, Auth::user()->password)) {
             return redirect(route('teachers.profile'))->with('danger', 'Your Previous Password Does not Match');

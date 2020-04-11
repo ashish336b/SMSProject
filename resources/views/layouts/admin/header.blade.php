@@ -33,7 +33,7 @@
                                                                 <div class="notification-heading">
                                                                     {{ $notification->data["message"] }}
                                                                 </div>
-                                                                <div class="notification-text">$4000</div>
+                                                                <div class="notification-text">{{$notification->data["subMessage"]}}</div>
                                                             </div>
                                                         </a>
                                                     </li>
