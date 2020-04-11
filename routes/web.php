@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', function () {
-    return redirect(route("students.login")); //this redirect to login page of teacher
+    return view('home');
 })->name('welcome');
 
 Auth::routes();
