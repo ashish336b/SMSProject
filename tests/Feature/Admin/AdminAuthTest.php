@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Admin;
 
 use App\Admin;
-use Illuminate\Auth\Notifications\ResetPassword;
+use App\Notifications\AdminResetPasswordNotification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -119,16 +119,13 @@ class AdminAuthTest extends TestCase
 
         $user = factory(Admin::class)->create();
 
-        $response = $this->post('admin/password/email', [
+        $this->post('admin/password/email', [
             'email' => $user->email,
         ]);
         $token = DB::table('password_resets')->first();
-        $this->get('admin/password/reset/'.$token->token)->assertStatus(200);
-
-        /* Notification::assertSentTo($user, ResetPassword::class, function ($notification, $channels) use ($token) {
-            dd($notification);
+        $this->assertNotNull($token);
+        Notification::assertSentTo($user, AdminResetPasswordNotification::class, function ($notification, $channels) use ($token, &$routes) {
             return Hash::check($notification->token, $token->token) === true;
-        }); */
+        });
     }
-
 }
