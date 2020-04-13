@@ -113,7 +113,7 @@ class AdminAuthTest extends TestCase
     }
 
     /** @test */
-    public function user_receives_an_email_with_a_password_reset_link()
+    public function admin_receives_an_email_with_a_password_reset_link()
     {
         Notification::fake();
 

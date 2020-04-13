@@ -45,6 +45,7 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'rollNumber' => ['required', 'string', 'max:255', 'unique:teachers'],
             'firstName' => ['required', 'string', 'max:255'],

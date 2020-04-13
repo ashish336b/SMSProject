@@ -29,5 +29,47 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <script src="https://code.iconify.design/1/1.0.5/iconify.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+
+    <style>
+        .customDashboardForm .card-header {
+            background-color: #42A5F5;
+            letter-spacing: 1px;
+            color: #f5f5f5;
+        }
+
+        .customDashboardForm .card{
+            padding-top: 0;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .customDashboardForm .card form row div{
+            padding: 0;
+        }
+
+        .customDashboardForm .form-group{
+            margin-bottom: 0;
+        }
+
+        .customDashboardForm label {
+            padding-left: 2px;
+            margin-bottom: 1px;
+            color: #757575;
+        }
+
+        .customDashboardForm button {
+            cursor: pointer;
+            background-color: #0288d1;
+        }
+
+        .alert-danger {
+            background-color: #FFCDD2;
+        }
+
+        .alert-success {
+            background-color: #E8F5E9
+        }
+
+    </style>
     @stack('customStyle')
 </head>
