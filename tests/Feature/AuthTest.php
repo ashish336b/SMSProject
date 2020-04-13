@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Admin;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class AuthTest extends TestCase
@@ -15,11 +14,13 @@ class AuthTest extends TestCase
      * @test
      * @return void
      */
+
     public function show_login_form()
     {
         $response = $this->get('/admin/login');
         $response->assertStatus(200);
     }
+
     /**
      * @test
      */
@@ -27,10 +28,11 @@ class AuthTest extends TestCase
     {
         $response = $this->get('/admin')->assertRedirect('/admin/login');
     }
+
     /** @test */
     public function auth_admin_cannot_access_admin_login_form()
-    { 
-        $this->actingAs(factory(Admin::class)->create() , 'admin')->withSession(['foo'=>'bar']);
+    {
+        $this->actingAs(factory(Admin::class)->create(), 'admin')->withSession(['foo' => 'bar']);
         $response = $this->get('/admin/login');
         $response->assertRedirect('/admin');
     }
@@ -39,7 +41,7 @@ class AuthTest extends TestCase
 
     public function show_admin_dashboard() /* baseUrl/admin */
     {
-        $this->actingAs(factory(Admin::class)->create() , 'admin')->withSession(['foo'=>'bar']);
+        $this->actingAs(factory(Admin::class)->create(), 'admin')->withSession(['foo' => 'bar']);
         $response = $this->get('/admin');
         $response->assertStatus(200);
     }
@@ -47,7 +49,7 @@ class AuthTest extends TestCase
     /** @test */
     public function show_teacher_data()
     {
-        $this->actingAs(factory(Admin::class)->create() , 'admin')->withSession(['foo'=>'bar']);
+        $this->actingAs(factory(Admin::class)->create(), 'admin')->withSession(['foo' => 'bar']);
         $response = $this->get('/admin/teachers');
         $response->assertStatus(200);
     }
