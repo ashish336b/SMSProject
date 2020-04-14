@@ -79,7 +79,7 @@ class ClassroomController extends Controller
             'department_id' => $request->department_id
         ]);
         if ($updateClassroomData) {
-            return redirect(route('admin.classroom'))->with('success', 'Classroom Created Successfully');
+            return redirect(route('admin.classroom'))->with('success', 'Classroom Data Updated Successfully');
         }
         return null;
     }

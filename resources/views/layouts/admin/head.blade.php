@@ -42,6 +42,7 @@
             padding-left: 0;
             padding-right: 0;
             background-color: #eae3e3;
+            border-bottom : 2px solid black;
         }
 
         .customDashboardForm .card form row div {
