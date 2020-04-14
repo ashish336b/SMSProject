@@ -52,7 +52,7 @@
                                 
                                 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Add Admin
+                                    <button type="submit" class="btn btn-primary">Edit
                                         <span class="iconify" data-icon="ion:paper-plane-sharp" data-inline="false"></span>
                                     </button>
                                 </div>

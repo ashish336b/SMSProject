@@ -64,7 +64,7 @@
                     </div>
                     <div class="card shadow">
                         <div class="card-header text-center font-weight-bold">
-                            Create New Notice
+                            Edit  Notice
                         </div>
                         <div class="card-body">
                             <form action="{{ route('admin.notice.update', $noticeData->id) }}" method="post">

@@ -52,7 +52,7 @@
                         </div>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Register Student
+                    <button type="submit" class="btn btn-primary">Add
                         <span class="iconify" data-icon="ion:paper-plane-sharp" data-inline="false"></span>
                     </button>
                 </div>

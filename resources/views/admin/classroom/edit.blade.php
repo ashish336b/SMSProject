@@ -72,7 +72,7 @@
             </div>
             <div class="card shadow">
                 <div class="card-header text-center font-weight-bold">
-                    Add classroom
+                    Edit classroom
                 </div>
                 <div class="card-body">
                     <form action="{{ route('admin.classroom.update', $classroomData->id) }}" method="post">
@@ -113,7 +113,7 @@
                         </div>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Register Student
+                    <button type="submit" class="btn btn-primary">Edit
                         <span class="iconify" data-icon="ion:paper-plane-sharp" data-inline="false"></span>
                     </button>
                 </div>

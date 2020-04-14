@@ -14,7 +14,7 @@
             </div>
             <div class="card shadow">
                 <div class="card-header text-center font-weight-bold">
-                    Edit Admin
+                    Edit Profile
                 </div>
                 <div class="card-body">
                     <form action="{{ route('teachers.updateProfile', $teacherData->id) }}"
