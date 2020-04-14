@@ -25,7 +25,7 @@ class RedirectIfAuthenticated
                 break;
             case 'students':
                 if (Auth::guard($guard)->check()) {
-                    return redirect()->route('students.dashboard');
+                    return redirect()->route('students.notice');
                 }
                 break;
             default:

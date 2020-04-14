@@ -16,6 +16,7 @@ class StudentsController extends Controller
 {
     public function index()
     {
+        return redirect(route('students.notice'));
         return view('students.index');
     }
 
