@@ -30,7 +30,7 @@ class FeedbackController extends Controller
             "firstName" => Auth::user()->firstName,
             "lastName" => Auth::user()->lastName,
         ];
-        $sendMail = Mail::to('ashish336b@gmail.com')->send(new FeedbackMail($dataToSend));
+        $sendMail = Mail::to('shrijanmalakar@gmail.com')->send(new FeedbackMail($dataToSend));
         return redirect(route('students.feedback'))->with('success', 'FeedBack Send Successfully');
     }
 }

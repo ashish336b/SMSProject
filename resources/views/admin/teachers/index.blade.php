@@ -14,7 +14,7 @@
             <thead>
                 <tr>
                     <th scope="col">SN</th>
-                    <th scope="col">RollNumber</th>
+                    <th scope="col">Teacher Id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">address</th>

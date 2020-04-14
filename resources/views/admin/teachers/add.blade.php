@@ -52,11 +52,11 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="rollNumber">Roll Number</label>
+                                        <label for="rollNumber">Teacher Id</label>
                                         <input type="text"
                                             class="form-control {{ $errors->has('rollNumber') ? ' is-invalid' : '' }}"
                                             name="rollNumber" value="{{ old('rollNumber') }}"
-                                            id="rollNumber" placeholder="Roll Number">
+                                            id="rollNumber" placeholder="Teacher Id">
                                         @if($errors->has('rollNumber'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('rollNumber') }}</strong>
