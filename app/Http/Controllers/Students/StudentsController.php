@@ -28,8 +28,6 @@ class StudentsController extends Controller
     public function updateProfile(Request $request)
     {
         $updateTeacherProfile = Students::where('id', Auth::user()->id)->update([
-            'firstName' => $request->firstName,
-            'lastName' => $request->lastName,
             'email' => $request->email,
             'address' => $request->address,
             'phoneNumber' => $request->phoneNumber,
