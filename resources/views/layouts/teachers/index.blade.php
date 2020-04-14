@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>{{Auth::user()->firstName}} {{Auth::user()->lastName}}</title>
-    @include('layouts.students.head')
+    @include('layouts.teachers.head')
 </head>
 <body>
 @include('layouts.teachers.sidebar')

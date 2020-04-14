@@ -33,8 +33,6 @@ class TeacherController extends Controller
     public function updateProfile(Request $request)
     {
         $updateTeacherProfile = Teachers::where('id', Auth::user()->id)->update([
-            'firstName' => $request->firstName,
-            'lastName' => $request->lastName,
             'email' => $request->email,
             'address' => $request->address,
             'phoneNumber' => $request->phoneNumber,

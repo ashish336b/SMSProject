@@ -29,8 +29,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <script src="https://code.iconify.design/1/1.0.5/iconify.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-
-    <style>
+    <link rel="stylesheet" href="{{url('/assets/css/customFormStyle.css')}}">
+    {{-- <style>
         .customDashboardForm .card-header {
             background-color: #42A5F5;
             letter-spacing: 1px;
@@ -63,7 +63,7 @@
             font-weight: 500;
         }
 
-        .customDashboardForm button {
+        .customDashboardForm button[type=submit] {
             cursor: pointer;
             background-color: #0288d1;
         }
@@ -77,9 +77,6 @@
         .customDashboardForm select:hover {
             border: 2px solid gray ;
         }
-
-
-
         .customAlert .alert-danger {
             background-color: #FFCDD2;
         }
@@ -92,6 +89,6 @@
             margin-bottom: 0;
         }
 
-    </style>
+    </style> --}}
     @stack('customStyle')
 </head>

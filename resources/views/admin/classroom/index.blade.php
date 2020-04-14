@@ -5,7 +5,11 @@
         <div class="text-right pb-2 "><a href="{{ route("admin.classroom.add") }}"
                 class="btn btn-info btn-sm">ADD <span class="iconify" data-icon="bx:bxs-message-add"
                     data-inline="false"></span> </a></div>
-        @include('layouts.flashmessage')
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                @include('layouts.flashmessage')
+            </div>
+        </div>
         <table id="departmentTable" class="table table-striped table-responsive">
             <thead>
                 <tr>
