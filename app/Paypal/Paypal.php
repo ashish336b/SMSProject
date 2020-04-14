@@ -19,8 +19,8 @@ class Paypal
     {
         $this->apiContext = new ApiContext(
             new OAuthTokenCredential(
-                'AeEwKTEsfKC5y7pxN5mJVOVL22xzEtIQfGQwGR_clWktSJfJoqjxGEygBMfKFvCtJcx7F27EO61GweLb',     // ClientID
-                'EIuQDgRENQfwFHvl6NT2BoZjJ2U7ZGQAjiSY1Oh3bIPI7ItOhNEgXRTXkxpB6xBYbBi4aodK9Abx3g9f'      // ClientSecret
+                config('paypal.studentFeePayment.client_id'),     // ClientID
+                config('paypal.studentFeePayment.client_secret')      // ClientSecret
             )
         );
     }
