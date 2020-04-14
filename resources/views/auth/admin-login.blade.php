@@ -22,7 +22,7 @@
                     <div class="card-body p-0">
                         <div class="row">
                             <div class="col-lg-6">
-                                <img src="{{url('/admin.png')}}" width="500" height="420" alt="" srcset="">
+                                <img src="{{url('pic/admin.png')}}" width="500" height="420" alt="" srcset="">
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">

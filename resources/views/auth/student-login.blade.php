@@ -24,7 +24,7 @@
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-6">
-                                <img src="{{url('/student.jpg')}}" width="500" height="420" alt="" srcset="">
+                                <img src="{{url('pic/student.jpg')}}" width="500" height="420" alt="" srcset="">
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">

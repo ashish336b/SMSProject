@@ -23,7 +23,7 @@
         }
 
         #showcase {
-            background-image: url(<?php echo url('/school2.jpg') ?>);
+            background-image: url(<?php echo url('pic/school.jpg') ?>);
             background-size: cover;
             background-position: center;
             height: 100vh;
