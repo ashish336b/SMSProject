@@ -25,7 +25,7 @@
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-6">
-                                <img src="https://picsum.photos/500/420" alt="" srcset="">
+                                <img src="{{url('/teacher.jpg')}}" width="500" height="420" alt="" srcset="">
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
