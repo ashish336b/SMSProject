@@ -41,10 +41,12 @@
             padding-top: 0;
             padding-left: 0;
             padding-right: 0;
+            background-color: #eae3e3;
         }
 
         .customDashboardForm .card form row div{
             padding: 0;
+            
         }
 
         .customDashboardForm .form-group{
@@ -54,7 +56,8 @@
         .customDashboardForm label {
             padding-left: 2px;
             margin-bottom: 1px;
-            color: #757575;
+            /* color: #757575; */
+            color : black;
         }
 
         .customDashboardForm button {
@@ -62,12 +65,16 @@
             background-color: #0288d1;
         }
 
-        .alert-danger {
+        .customAlert .alert-danger {
             background-color: #FFCDD2;
         }
 
-        .alert-success {
+        .customAlert .alert-success {
             background-color: #E8F5E9
+        }
+
+        .customAlert > div{
+            margin-bottom: 0;
         }
 
     </style>

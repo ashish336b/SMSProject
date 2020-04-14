@@ -92,17 +92,6 @@ class TeacherController extends Controller
      */
     public function edit($teachers, Request $request)
     {
-
-        /*$validation = $request->validate([
-            'rollNumber' => ['required', 'string'],
-            'firstName' => ['required', 'string', 'max:255'],
-            'lastName' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-            'address' => ['required', 'string'],
-            'phoneNumber' => ['required', 'numeric'],
-            'department_id' => ['required', 'numeric'],
-        ]);*/
         $data = Teachers::where('id', $teachers)->update([
             'rollNumber' => $request->rollNumber,
             'firstName' => $request->firstName,
