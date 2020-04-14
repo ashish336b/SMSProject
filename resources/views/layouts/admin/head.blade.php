@@ -37,19 +37,19 @@
             color: #f5f5f5;
         }
 
-        .customDashboardForm .card{
+        .customDashboardForm .card {
             padding-top: 0;
             padding-left: 0;
             padding-right: 0;
             background-color: #eae3e3;
         }
 
-        .customDashboardForm .card form row div{
+        .customDashboardForm .card form row div {
             padding: 0;
-            
+
         }
 
-        .customDashboardForm .form-group{
+        .customDashboardForm .form-group {
             margin-bottom: 0;
         }
 
@@ -57,13 +57,27 @@
             padding-left: 2px;
             margin-bottom: 1px;
             /* color: #757575; */
-            color : black;
+            color: black;
+            letter-spacing: 1px;
+            font-weight: 500;
         }
 
         .customDashboardForm button {
             cursor: pointer;
             background-color: #0288d1;
         }
+
+        .customDashboardForm input,
+        .customDashboardForm select {
+            border: 2px solid gray;
+        }
+
+        .customDashboardForm input:hover,
+        .customDashboardForm select:hover {
+            border: 2px solid gray ;
+        }
+
+
 
         .customAlert .alert-danger {
             background-color: #FFCDD2;
@@ -73,7 +87,7 @@
             background-color: #E8F5E9
         }
 
-        .customAlert > div{
+        .customAlert>div {
             margin-bottom: 0;
         }
 
