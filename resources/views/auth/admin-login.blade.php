@@ -14,12 +14,12 @@
 
 <body style="background-color : #ADADAD">
     <div class="container">
-        <!-- Outer Row -->
+        <br>
+        <br>
         <div class="row justify-content-center">
             <div class="col-xl-10 col-lg-12 col-md-9">
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-6">
                                 <img src="https://picsum.photos/500/420" alt="" srcset="">
