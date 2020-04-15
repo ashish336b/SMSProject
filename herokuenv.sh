@@ -5,7 +5,7 @@ heroku config:add DB_PORT=5432
 heroku config:add DB_DATABASE=dbit71n4mioq7q
 heroku config:add DB_USERNAME=urwbdxaikemcmn
 heroku config:add DB_PASSWORD=63f5d0a85dc84e87c6ba06833ab9a32bdc21bd0845be5553596a6694822b3bdb
-# paypal configuratoin
+paypal configuratoin
 heroku config:add CLIENT_ID=AadsjYS4GJKqBF-mHF4cKhPm--O5OarGqwAXjsWbm78aL_bGp2rD4_24DQnLSM88uc__mLpte-l3uFME
 heroku config:add CLIENT_SECRET=EIcZK4ngTTCpQyuf0e7fNiMrpeHAKj5pLFPlAJXawLNVFYC49xudAqgRfhSHDYE7nIIf1QtNOuaPep9X
 
