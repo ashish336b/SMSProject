@@ -31,6 +31,7 @@ class AssignmentController extends Controller
         $createAssignment = Assignment::create([
             'message' => $request->message,
             'classroom_id' => $request->classroom_id,
+            'teacher_id'=> Auth::user()->id,
             'fileUrl' => $fileNameToStore,
         ]);
         if ($createAssignment) {

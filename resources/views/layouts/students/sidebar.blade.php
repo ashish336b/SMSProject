@@ -7,7 +7,9 @@
                 <li class="label">Student</li>
                 <li
                     class="{{ Route::is('students.notice')?'active': '' }}">
-                    <a href="{{ route('students.notice') }}"><i class="ti-announcement"></i> Notice </a>
+                    <a href="{{ route('students.notice') }}"><i class="ti-announcement"></i> Notice
+                    </a>
+                </li>
                 <li
                     class="{{ Route::is('students.payment')?'active': '' }}">
                     <a href="{{ route('students.payment') }}"><i class="ti-money"></i> PayFee </a>
@@ -17,7 +19,11 @@
                     <a href="{{ route('students.feedback') }}"><i class="ti-comment"></i> Send
                         FeedBack </a>
                 </li>
+                <li
+                    class="{{ Route::is('students.teacherNotice')?'active': '' }}">
+                    <a href="{{ route('students.teacherNotice') }}"><i class="ti-comment"></i>Assignment/Attachment</a>
                 </li>
+
             </ul>
         </div>
     </div>

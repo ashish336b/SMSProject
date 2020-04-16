@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Students;
 
 use App\Admin;
 use App\Http\Controllers\Controller;
+use App\Model\Assignment;
 use App\Model\SendNotice;
 use App\Notifications\SchoolFeePaid;
 use App\Students;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Response;
 
 class StudentsController extends Controller
 {
@@ -63,5 +65,15 @@ class StudentsController extends Controller
             ->orwhere('to', 'Student')->orderBy('created_at', 'desc')
             ->paginate(3);
         return view('students.notice', ['notice' => $notice]);
+    }
+
+    public function teacherNotice()
+    {
+        $allAssignmentData = Assignment::where('classroom_id', Auth::user()->classroom_id)->get();
+        return view('students.assignment', ['allAssignmentData' => $allAssignmentData]);
+    }
+    public function downloadAssignment($id)
+    {
+        return response()->download(asset('/storage/assignment/'.$id), $id);
     }
 }

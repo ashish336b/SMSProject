@@ -140,6 +140,10 @@ Route::group(['middleware' => 'auth:students', 'prefix' => 'students'], function
         Route::get('/', 'Students\FeedbackController@index')->name('students.feedback');
         Route::post('/', 'Students\FeedbackController@store')->name('students.feedback');
     });
+    Route::group(['prefix' => 'assignmentNotice'], function () {
+        Route::get('/', 'Students\StudentsController@teacherNotice')->name('students.teacherNotice');
+        Route::get('/{fileUrl}/download', 'Students\StudentsController@downloadAssignment')->name('students.teacherNotice.download');
+    });
 });
 
 /**
