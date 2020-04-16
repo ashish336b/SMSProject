@@ -155,4 +155,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'teachers'], function () {
     Route::get('/profile', 'Teachers\TeacherController@showProfile')->name('teachers.profile');
     Route::put('/profile', 'Teachers\TeacherController@updateProfile')->name('teachers.updateProfile');
     Route::put('/profile/changePassword', 'Teachers\TeacherController@changePassword')->name('teachers.changePassword');
+    Route::group(['prefix' => 'attachment'], function () {
+        Route::get('/', 'Teachers\AssignmentController@index')->name('teachers.attachment');
+        Route::post('/', 'Teachers\AssignmentController@create')->name('teachers.attachment');
+    });
 });
