@@ -1,6 +1,7 @@
 <?php
 namespace App\Paypal;
 
+use Exception;
 use PayPal\Api\Amount;
 use PayPal\Api\Item;
 use PayPal\Api\ItemList;
@@ -9,6 +10,7 @@ use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Exception\PayPalConnectionException;
 use PayPal\Rest\ApiContext;
 
 class Paypal
@@ -19,10 +21,15 @@ class Paypal
     {
         $this->apiContext = new ApiContext(
             new OAuthTokenCredential(
-                config('paypal.studentFeePayment.client_id'),     // ClientID
-                config('paypal.studentFeePayment.client_secret')      // ClientSecret
+                config('paypal.studentFeePayment.client_id'), // ClientID
+                config('paypal.studentFeePayment.client_secret') // ClientSecret
             )
         );
+        $this->apiContext->setConfig([
+            'log.LogEnabled' => true,
+            'log.FileName' => 'PayPal.log',
+            'log.LogLevel' => 'DEBUG',
+        ]);
     }
 
     public function createPayment()
@@ -40,7 +47,6 @@ class Paypal
         $itemList = new ItemList();
         $itemList->setItems(array($item1));
 
-
         $amount = new Amount();
         $amount->setCurrency("USD")
             ->setTotal(4000);
@@ -53,7 +59,7 @@ class Paypal
 
         $redirectUrls = new RedirectUrls();
         $redirectUrls->setReturnUrl(url('/students/payment/executePayment?success=true'))
-            ->setCancelUrl(url('/executePayment?success=false'));
+            ->setCancelUrl(url('/students/payment/executePayment?success=false'));
 
         $payment = new Payment();
         $payment->setIntent("sale")
@@ -61,7 +67,15 @@ class Paypal
             ->setRedirectUrls($redirectUrls)
             ->setTransactions(array($transaction));
 
-        $payment->create($this->apiContext);
+        try {
+            $payment->create($this->apiContext);
+        } catch (PayPalConnectionException $ex) {
+            echo $ex->getCode();
+            echo $ex->getData();
+            die($ex);
+        } catch (Exception $ex) {
+            die($ex);
+        }
         $approvalUrl = $payment->getApprovalLink();
         return $approvalUrl;
     }

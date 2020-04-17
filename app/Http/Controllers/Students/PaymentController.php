@@ -3,16 +3,18 @@
 namespace App\Http\Controllers\Students;
 
 use App\Admin;
+use App\Http\Controllers\Controller;
+use App\Model\Payment as PaymentRecord;
 use App\Notifications\SchoolFeePaid;
 use App\Paypal\Paypal;
 use App\Students;
+use Exception;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use PayPal\Api\Payment;
 use PayPal\Api\PaymentExecution;
-use App\Model\Payment as PaymentRecord;
+use PayPal\Exception\PayPalConnectionException;
 
 class PaymentController extends Controller
 {
@@ -26,11 +28,26 @@ class PaymentController extends Controller
         $paypal = new Paypal();
         if ($request->has('success') && $request->success == 'true') {
             $paymentId = $request->paymentId;
-            $payment = Payment::get($paymentId, $paypal->apiContext);
-
+            try {
+                $payment = Payment::get($paymentId, $paypal->apiContext);
+            } catch (PayPalConnectionException $ex) {
+                echo $ex->getCode();
+                echo $ex->getData();
+                die($ex);
+            } catch (Exception $ex) {
+                die($ex);
+            }
             $execution = new PaymentExecution();
             $execution->setPayerId($request->PayerID);
-            $result = $payment->execute($execution, $paypal->apiContext);
+            try {
+                $result = $payment->execute($execution, $paypal->apiContext);
+            } catch (PayPalConnectionException $ex) {
+                echo $ex->getCode();
+                echo $ex->getData();
+                die($ex);
+            } catch (Exception $ex) {
+                die($ex);
+            }
             if ($result) {
                 $makePaymentRecord = PaymentRecord::create([
                     'paymentId' => $paymentId,
@@ -41,12 +58,12 @@ class PaymentController extends Controller
                 ]);
                 if ($makePaymentRecord) {
                     $updateStudentRecord = Students::where('id', Auth::user()->id)->update([
-                        'isFeePaid' => 1
+                        'isFeePaid' => 1,
                     ]);
                     if ($updateStudentRecord) {
                         $invoice = PaymentRecord::where('paymentId', $request->paymentId)->first();
                         $notificationMessage = Auth::user()->firstName . " " . Auth::user()->lastName . " Paid School Fee";
-                        Notification::send(Admin::all(), new SchoolFeePaid($invoice, $notificationMessage , '$4000'));
+                        Notification::send(Admin::all(), new SchoolFeePaid($invoice, $notificationMessage, '$4000'));
                         return redirect(route('students.payment'))->with('success', 'Payment Made Successfully');
                     }
                 }
