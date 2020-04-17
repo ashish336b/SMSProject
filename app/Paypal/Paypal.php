@@ -29,6 +29,7 @@ class Paypal
             'log.LogEnabled' => true,
             'log.FileName' => 'PayPal.log',
             'log.LogLevel' => 'DEBUG',
+            'http.ConnectionTimeOut' => 30,
         ]);
     }
 
