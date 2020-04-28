@@ -71,11 +71,9 @@ class Paypal
         try {
             $payment->create($this->apiContext);
         } catch (PayPalConnectionException $ex) {
-            echo $ex->getCode();
-            echo $ex->getData();
-            die($ex);
+            die("Internet is Quiet Slow Please Refresh Again or Try again. Transation is Not completed");
         } catch (Exception $ex) {
-            die($ex);
+            die("Internet is Quiet Slow Please Refresh Again or Try again. Transation is Not completed");
         }
         $approvalUrl = $payment->getApprovalLink();
         return $approvalUrl;

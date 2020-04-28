@@ -31,22 +31,18 @@ class PaymentController extends Controller
             try {
                 $payment = Payment::get($paymentId, $paypal->apiContext);
             } catch (PayPalConnectionException $ex) {
-                echo $ex->getCode();
-                echo $ex->getData();
-                die($ex);
+                die("Internet is Quiet Slow Please Refresh Again or Try again. Transation is Not completed");
             } catch (Exception $ex) {
-                die($ex);
+                die("Internet is Quiet Slow Please Refresh Again or Try again. Transation is Not completed");
             }
             $execution = new PaymentExecution();
             $execution->setPayerId($request->PayerID);
             try {
                 $result = $payment->execute($execution, $paypal->apiContext);
             } catch (PayPalConnectionException $ex) {
-                echo $ex->getCode();
-                echo $ex->getData();
-                die($ex);
+                die("Internet is Quiet Slow Please Refresh Again or Try again. Transation is Not completed");
             } catch (Exception $ex) {
-                die($ex);
+                die("Internet is Quiet Slow Please Refresh Again or Try again. Transation is Not completed");
             }
             if ($result) {
                 $makePaymentRecord = PaymentRecord::create([

@@ -3,9 +3,8 @@
 namespace App;
 
 use App\Notifications\AdminResetPasswordNotification;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class Students extends Authenticatable
 {
@@ -15,9 +14,9 @@ class Students extends Authenticatable
 
     public function sendPasswordResetNotification($token)
     {
-        $this->notify(new AdminResetPasswordNotification($token , 'students.password.reset'));
+        $this->notify(new AdminResetPasswordNotification($token, 'students.password.reset'));
     }
-    
+
     /**
      * The attributes that are mass assignable.
      *
