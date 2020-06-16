@@ -31,9 +31,9 @@ class PaymentController extends Controller
             try {
                 $payment = Payment::get($paymentId, $paypal->apiContext);
             } catch (PayPalConnectionException $ex) {
-                die("Internet is Quiet Slow Please Refresh Again or Try again. Transation is Not completed");
+                die("Internet is Quiet Slow Please Refresh Again.");
             } catch (Exception $ex) {
-                die("Internet is Quiet Slow Please Refresh Again or Try again. Transation is Not completed");
+                die("Internet is Quiet Slow Please Refresh Again.");
             }
             $execution = new PaymentExecution();
             $execution->setPayerId($request->PayerID);

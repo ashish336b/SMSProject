@@ -71,7 +71,7 @@ class Paypal
         try {
             $payment->create($this->apiContext);
         } catch (PayPalConnectionException $ex) {
-            die("Internet is Quiet Slow Please Refresh Again or Try again. Transation is Not completed");
+            die("Internet is Quiet Slow Please Refresh Again. Transation is Not completed");
         } catch (Exception $ex) {
             die("Internet is Quiet Slow Please Refresh Again or Try again. Transation is Not completed");
         }
