@@ -1,4 +1,6 @@
 <?php
+
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +19,10 @@ Route::get('/', function () {
     return view('home');
 })->name('welcome');
 
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    return "Cache is cleared";
+});
 Auth::routes();
 
 Route::get('/register', 'Auth\RegisterController@register')->name('register')->middleware('auth:admin');
