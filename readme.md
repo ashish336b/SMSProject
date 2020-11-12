@@ -57,6 +57,7 @@ php -S localhost:1212 -t public/
 *   Student can send mail to admin for sending feedback from application.
 
 *   Every Role can edit their profile
+*   notification system
 
 > Admin dashboard
 > ![preview](./preview/admin.png)
