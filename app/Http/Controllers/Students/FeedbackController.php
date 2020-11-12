@@ -7,7 +7,7 @@ use App\Mail\FeedbackMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-/* Changed */
+
 class FeedbackController extends Controller
 {
     public function index()

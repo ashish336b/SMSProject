@@ -5,7 +5,6 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class FeedbackMail extends Mailable
 {
@@ -29,6 +28,6 @@ class FeedbackMail extends Mailable
      */
     public function build()
     {
-        return $this->from('ashish336b@gmail.com')->markdown('students.feedback.feedback');
+        return $this->from('shrijanmalakar@gmail.com')->markdown('students.feedback.feedback');
     }
 }
